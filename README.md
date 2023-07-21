@@ -41,9 +41,9 @@ que nuestro codigo puede retroceder a una verison anterior
 Nuestro repositorio contiene los archivos de nuestro proyecto, estos archivos pueden tener diferentes
 estados cada uno con un proposito:
 
-&nbsp; - Modified (modificado): Este estado es al que pasa un archivo que alteramos en algun aspecto, ya sea borrar, anadir o modificar una linea, estos cambios todavia no estas preparados para ser confirmados.
-&nbsp; - Staged (preparado): Cuando marcamos nuestros archivos con este estado le estamos diciendo a Git que estan preparados para ser confirmados. Estos se encuentra en un estado transitoria para luego ser confirmados.
-&nbsp; - Commited (confirmado): ESto quiere decir que nuestro archivo se encuntra confirmado y guardad en nuestro repositorio local. La accion de pasar de `stage` => `commited` se llama "commit".
+- Modified (modificado): Este estado es al que pasa un archivo que alteramos en algun aspecto, ya sea borrar, anadir o modificar una linea, estos cambios todavia no estas preparados para ser confirmados.
+- Staged (preparado): Cuando marcamos nuestros archivos con este estado le estamos diciendo a Git que estan preparados para ser confirmados. Estos se encuentra en un estado transitoria para luego ser confirmados.
+- Commited (confirmado): ESto quiere decir que nuestro archivo se encuntra confirmado y guardad en nuestro repositorio local. La accion de pasar de `stage` => `commited` se llama "commit".
 
 #### NO ENTIENDO, AYUDA 
 Es normal que esto te confunda, la mejor forma de entender los estados de los ficheros en Git es pensado
@@ -58,5 +58,34 @@ en una sesion de fotografia. Con un panel, una camara y los objetos que queremos
 
 Espero que de esta manera ayas podido entender con mas claridad como funionan los estados de los archivos y las accioines que pueden modificar a estos.
 
+### Que es una rama
+Antes dijimos que deberiamos pensar en los estamos de commit como una sesion fotographica, de la
+misma manera podemos pensar en una rama como un album de fotos.<br>
+Por defecto nuestra rama se llamara `main` y estara formada por el historial de nuestros commits
+
+        main || git init <---- commit 1 <---- commit 2 <---- commit 3
+
+Podemos ver nuestra unica rama `main` esta contiene nuestros commit, mas no es la unica rama
+que podemos tener podemos crear ramas a partir de otra en nuestro caso `main` pero esto lo veremos un
+poco mas adelante.
+
+### Introduciendo HEAD
+HEAD es una variable que contiene la direccion actual de nustra posicion en las ramas
+
+### Creando ramas
+En el siguiente ejemplo crearemos una rama con el nombre `newRama`.
+
+Estado inicial(antes de crear la rama)
+
+        main || git init <---- commit 1 <---- commit 2
+
+Despues de crear la nueva rama a partir del commit 2
+
+        main || git init <---- commit 1 <---- commit 2
+                                                 \
+                                                  \
+                                        newRama || commit 2
+
+Como podemos ver nuestra rama desiende del commit 2 por lo que se crea como una copia exacta de este
 
 
