@@ -6,10 +6,10 @@ Conclusiones del libro Aprendiendo Git de Miguel Angel Duran
 ### 1. Introduccion
 ### 2. Teoria
 ### 3. Instalacion y configuracion
-### 4. Lista y expliacion de comandos
-#### Local
-#### Ramas
-#### Remoto
+### 4. Lista y explicacion de comandos
+#### 4.1. Local
+#### 4.2. Ramas
+#### 4.3. Remoto
 ### 5. Conceptos utiles
 ### 6. Flujos de trabajo
 ### 7. Buenas Practicas
@@ -36,14 +36,15 @@ en la cual se puede retroseder, dividir y fusionar
 Git nos ayuda a llevar ese registro de cambios que hacemos a nuestro codigo, y ademas darnos la seguridad
 que nuestro codigo puede retroceder a una verison anterior
 
+## Teoria
 
 ### Los tres estados de Git
 Nuestro repositorio contiene los archivos de nuestro proyecto, estos archivos pueden tener diferentes
 estados cada uno con un proposito:
 
-&nbsp; - Modified (modificado): Este estado es al que pasa un archivo que alteramos en algun aspecto, ya sea borrar, anadir o modificar una linea, estos cambios todavia no estas preparados para ser confirmados.
-&nbsp; - Staged (preparado): Cuando marcamos nuestros archivos con este estado le estamos diciendo a Git que estan preparados para ser confirmados. Estos se encuentra en un estado transitoria para luego ser confirmados.
-&nbsp; - Commited (confirmado): ESto quiere decir que nuestro archivo se encuntra confirmado y guardad en nuestro repositorio local. La accion de pasar de `stage` => `commited` se llama "commit".
+- Modified (modificado): Este estado es al que pasa un archivo que alteramos en algun aspecto, ya sea borrar, anadir o modificar una linea, estos cambios todavia no estas preparados para ser confirmados.
+- Staged (preparado): Cuando marcamos nuestros archivos con este estado le estamos diciendo a Git que estan preparados para ser confirmados. Estos se encuentra en un estado transitoria para luego ser confirmados.
+- Commited (confirmado): ESto quiere decir que nuestro archivo se encuntra confirmado y guardad en nuestro repositorio local. La accion de pasar de `stage` => `commited` se llama "commit".
 
 #### NO ENTIENDO, AYUDA 
 Es normal que esto te confunda, la mejor forma de entender los estados de los ficheros en Git es pensado
@@ -57,6 +58,150 @@ en una sesion de fotografia. Con un panel, una camara y los objetos que queremos
 - Ya tenemos nuestra foto!, ahora nunca olvidaremos este momento, procedemos a dejar nuestros obejtos en su lugar, fuera del panel. Esto representa el fin del ciclo de vida de los ficheros, de este modo despuse de hacer `commit` pasaran a estar sin modificar otrave, de modo que podemos repetir el ciclo.
 
 Espero que de esta manera ayas podido entender con mas claridad como funionan los estados de los archivos y las accioines que pueden modificar a estos.
+
+### Git y GitHub no son lo mismo
+Parece un poco ovbio pero todavia escucho personas penser eso, y no tiene nada de malo
+a simple vista cumplen la misma funcion.
+
+- Git: Es un sistema de versionamiento y control, es decir nos ayuda a controlar nuestros cambios, este se ejecuta de manera local, de la misma manera almacena los repositorios en nuestra maquina.
+- GitHub: Es un servicio de hospedamiento remoto de nuestros repositorios, ofrecido actualmente por Microsoft, y no es el unico que nos ofrece tal cosa, por ejemplo tenemos a GitLab o BitBucket, los cuales nos ofrecen los mismo. En resumen GitHub solo almacenara nuestros repositorios en la nube estando asi listos para podeer usarlos desde cualquier parte o momento, ya se por nosotros o por un equipo de desarrollo.
+
+## Instalcion y configuracion
+Aqui se daran algunos pasos y recomendaciones para descargar y configurar git, mas no reemplaza leer la documentacion de su pagina oficial,
+ademas que solo veremos las formas de instalarlo en algunos sistemas operativos.
+
+### Comprobando si ya tengo instalado Git
+Esto es muy facil solo es ejecutar el siguiente comando en la terminal. Una aclaracion,
+siempre que vean un signo de dolar anteponiendo al comando, quiere decir que ese comando se
+ejecuta en una terminal, no es nesesario y no se debe copiar directamente en esta.
+
+        $ git --version
+
+Si tenemos instalado git nos saldra lo siguiente:
+
+        git version 2.41.0
+
+Si al contrario el mensaje de vuelta es algo como `git: command not found` es porque aun no tenemos
+instaldo Git
+
+### Instalando Git
+- Ubuntu: Tan simple como ejecutar
+
+        $ apt-get install git
+
+- Windows: Tambien simple, dirijete a la pagina oficil y descarga el instalador, sigues lo pasos y le das siguiente a todo.
+
+
+### Configurando mi nombre y correo
+Al hacer cambios en el repositorio estamos modificando archivos que podrian ser muy importante
+ya se en el caso de estar trabanjo solo o en un equipo por esta razon tenemos que firmar
+con nuestro nombre y correo cada cambio que hacemos, de esta manera, los demas integrnates podran
+saber quien hizo que cosa y haci tener un mejor control.
+
+Ejecutamos los siguientes comandos cambiando la informacion con la correspondiente:
+
+        $ git config --global user.name "miNombreDeUsuario"
+        $ git config --global user.email "miCorreo@example.com"
+
+En mi caso seria de la siguiente manera:
+
+        $ git config --global user.name "Diegoo11"
+        $ git config --global user.email "ynoacamino@gmail.com"
+
+Explicacion: Con la bandera `--global` le estamos diciendo que queremos que esta configuracion
+se guarde y este disponible para todos nuestros repositorios, tambien podemos querer
+que solo se guarde en un repositorio en especifico, para ese caso nos dirijimos a la carpeta raiz de este
+y ejecutamos.
+
+        $ git config user.name "miOtroNombre"
+
+De esta manera se guardara solo en el repositorio especifico.
+
+### Listar la configuracion
+Un comando muy util que uso siempre antes de abrir mi editor de codigo, es listar mi configuracion
+ya sea porque no estoy seguro cual sera mi rama por defecto o aun mas importante, saber
+con que correo estoy trabajando, ya que si uso un correo y nombre diferente del que tienen concimiento
+mi equipo de desarrollo causare confucion y es lo que menos queremos. <br>
+Para esto usaremos el siguiente comando.
+
+        $ git config --list
+
+Nos mostrara toda nuestra configuracion global, en caso de solo querer la configuracion local del repositorio
+podemos ejecutar el siguiente.
+
+        $ git config --local --list
+
+## Lista y explicacion de comandos
+Los comandos listados acontinuacion tendran la siguiente forma
+
+        $ <comando> <argumento|opcional> <archivo>
+        $ ...variantes del mismo comando
+        
+        Breve expliacion.
+        Casos de uso.
+        Opinion.
+
+### git restore : Eliminar los cambios hechos a un archivo
+
+        $ git restore archivo.txt
+        $ git restore archivo.txt archivo2.md
+        $ git restore .
+
+Con el mas minimo cambio nuestro archivo pasara del estado `commited` a `modified` pero
+aveces modificamos un archivo por error y queremos volver a la ultima ves donde nuestro archivo
+estada `commited`.<br>
+Para esto usamos `git restore <ruta del archivo>`, tenemos de tener mucho cuidado ya que
+de hacer accidentamente podemos perder muchas horas de trabajo
+
+Tenemos que tener en cuenta que tanto `archivo.txt`,
+`archivo.txt archivo2.md` y `.` son rutas y eso es lo que acepta Git.
+
+### git add : Anadir archivos al area de `stage`
+
+        $ git add archivo.txt                   (1)
+        $ git add archivo.txt archivo2.md       (2)
+        $ git add .                             (3)
+
+Git add sirve para pasar un archivo del estado `modified` al estado `staging`. <br>
+
+|   Archivos    |   Modified    |   Staging     |
+|-----------------------------------------------|
+|   archivo.txt |   X           |               |
+|   archivo2.md |   X           |               |
+
+Despues de haber ejecutado los mandos nustros archivos que inicialmente tenian le estado
+de `modified` pasaron a estar en `staging`.
+
+|   Archivos    |   Modified    |   Staging     |
+|-----------------------------------------------|
+|   archivo.txt |               |   x           |
+|   archivo2.md |               |   x           |
+
+
+### git reset : Sacar ficheros del area de `stage`
+
+        $ git reset archivo.js
+        $ git reset archivo.js README.md
+        $ git reset .
+
+Hay veces donde escribimos mal la ruta de una archivo y lo anadimos por error al area de `stage`. <br>
+No hay problema, lo sacaremos. Con el comando `git reset <ruta>` podemos sacar esos archivos
+que no queremos que esten en `stage`.
+
+Estado inicial:
+
+|   Archivos    |   Modified    |   Staging     |
+|-----------------------------------------------|
+|   archivo.js  |               |   x           |
+|   README.md   |               |   x           |
+
+Despues de: `git reset .`
+
+|   Archivos    |   Modified    |   Staging     |
+|-----------------------------------------------|
+|   archivo.js  |   x           |               |
+|   README.md   |   x           |               |
+
 
 
 
