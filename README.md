@@ -38,7 +38,7 @@ que nuestro codigo puede retroceder a una verison anterior
 
 ## Teoria
 
-### Los tres estados de Git
+### Los tres estados de los archivos en Git
 Nuestro repositorio contiene los archivos de nuestro proyecto, estos archivos pueden tener diferentes
 estados cada uno con un proposito:
 
@@ -203,5 +203,45 @@ Despues de: `git reset .`
 |   README.md   |   x           |               |
 
 
+### git commit : Guardando con commit
+
+        $ git commit                                (1)
+        $ git commit -m "<mensaje>"                 (2)
+        $ git commit -m "<mensaje>" <ruta>          (3)
+
+
+Si no leiste 'Los 3 estados de los archivos en Git' te recomiendo encaresidamente que
+le des una leida antes de continuar.<br>
+Digamos que ya editamos nuestro archivo `App.js`, decidimos que terminamos de hacer los
+cambios correspondientes asi que ejecutamos
+
+        $ git add App.js
+
+De paso anadimos otros archivo que tambien estan listos
+
+        $ git add README.md
+        $ git add index.js
+        $ git add package.json
+
+Ahora estamos listos para hacer nustro primer commit
+
+        $ git commit -m "mi primer commit"
+
+De esta manera terminamos el ciclo de vida de los ficheros y pasan a estar otraves al
+estado `commited`
+
+                           edit                  add
+        -----> commited ----------> modified -----------> staged -----
+        |                                                            |
+        |                                                            |
+        |                                                            |
+        --------------------------------------------------------------
+                                    commit
+
+*(1):* Guarda el commit de todos los archivos que esten en el area de `staging`, ademas habre un editor de texto para incluir el asunto del commit
+*(2):* Guarda el commit de todos los archivos que esten en el area de `staging`, mas no habre nigun editor ya que le pasamos el mensaje del commit como parametro
+*(3):* Cumple la misma funcion que *(2)* pero solo guarda un archivo en particular y los demas los ignora.
+
+### git reset : Quiero eliminar mi commit y devolver una version anterior
 
 
