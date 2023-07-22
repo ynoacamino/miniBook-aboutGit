@@ -44,7 +44,9 @@ Nuestro repositorio contiene los archivos de nuestro proyecto, estos archivos pu
 estados cada uno con un proposito:
 
 - Modified (modificado): Este estado es al que pasa un archivo que alteramos en algun aspecto, ya sea borrar, anadir o modificar una linea, estos cambios todavia no estas preparados para ser confirmados.
+
 - Staged (preparado): Cuando marcamos nuestros archivos con este estado le estamos diciendo a Git que estan preparados para ser confirmados. Estos se encuentra en un estado transitoria para luego ser confirmados.
+
 - Commited (confirmado): ESto quiere decir que nuestro archivo se encuntra confirmado y guardad en nuestro repositorio local. La accion de pasar de `stage` => `commited` se llama "commit".
 
 #### NO ENTIENDO, AYUDA 
@@ -52,10 +54,15 @@ Es normal que esto te confunda, la mejor forma de entender los estados de los fi
 en una sesion de fotografia. Con un panel, una camara y los objetos que queremos fotografiar.
 
 - Al principio nuestro panel va a estar vacio ya que no tenemos nada nuevo a lo sque queramos fotografiar.
+
 - Oh, uno de nuestros objetos cambio de color. Esto representa el estado de `Modified`.
+
 - Como nuestro objeto cambio, asi que lo preparamos y lo dejamos dentro de panel. Mover nuestro objeto y prepararlo representa al accion de `add` y el panel el estado `Stage`.
+
 - Al parecer mas objetos an estado cambiando, de modo que tambien los preparemos y los dejamos dentro del panel. Podemos preparar varios archivos al mismo tiempo, esto es porque algunos cambios tienen relacion directa con otros de modo que los podemos guardar juntos.
+
 - Ahora con todos nuestros objetos listos para la fotografia procedemos a tomar la foto, de esta manera no nos olvidaremos de este momento. La accion de tomar la foto hace referencia a la accion `commit` ya que con esto guardamos nuestros cambios ademas de darles un nombre o asunto.
+
 - Ya tenemos nuestra foto!, ahora nunca olvidaremos este momento, procedemos a dejar nuestros obejtos en su lugar, fuera del panel. Esto representa el fin del ciclo de vida de los ficheros, de este modo despuse de hacer `commit` pasaran a estar sin modificar otrave, de modo que podemos repetir el ciclo.
 
 Espero que de esta manera ayas podido entender con mas claridad como funionan los estados de los archivos y las accioines que pueden modificar a estos.
@@ -166,7 +173,7 @@ Tenemos que tener en cuenta que tanto `archivo.txt`,
 Git add sirve para pasar un archivo del estado `modified` al estado `staging`. <br>
 
 |   Archivos    |   Modified    |   Staging     |
-|-----------------------------------------------|
+|---------------|---------------|---------------|
 |   archivo.txt |   X           |               |
 |   archivo2.md |   X           |               |
 
@@ -192,14 +199,14 @@ que no queremos que esten en `stage`.
 Estado inicial:
 
 |   Archivos    |   Modified    |   Staging     |
-|-----------------------------------------------|
+|---------------|---------------|---------------|
 |   archivo.js  |               |   x           |
 |   README.md   |               |   x           |
 
 Despues de: `git reset .`
 
 |   Archivos    |   Modified    |   Staging     |
-|-----------------------------------------------|
+|---------------|---------------|---------------|
 |   archivo.js  |   x           |               |
 |   README.md   |   x           |               |
 
@@ -239,9 +246,11 @@ estado `commited`
         --------------------------------------------------------------
                                     commit
 
-*(1):* Guarda el commit de todos los archivos que esten en el area de `staging`, ademas habre un editor de texto para incluir el asunto del commit
-*(2):* Guarda el commit de todos los archivos que esten en el area de `staging`, mas no habre nigun editor ya que le pasamos el mensaje del commit como parametro
-*(3):* Cumple la misma funcion que *(2)* pero solo guarda un archivo en particular y los demas los ignora.
+- **(1):** Guarda el commit de todos los archivos que esten en el area de `staging`, ademas habre un editor de texto para incluir el asunto del commit
+
+- **(2):** Guarda el commit de todos los archivos que esten en el area de `staging`, mas no habre nigun editor ya que le pasamos el mensaje del commit como parametro
+
+- **(3):** Cumple la misma funcion que **(2)** pero solo guarda un archivo en particular y los demas los ignora.
 
 ### git reset : Quiero eliminar mi commit y devolver una version anterior
 
@@ -253,13 +262,16 @@ Que ha pasado, al parecer cometiste un error al subir el commit y quiere volver 
 anterior, no hay problema con `git reset` podemos lograrlo pero antes:
 
 - `git reset` puede ser muy peligroso ya que alteramos los commis osea los nodos de nuestra rama esto puede cuasar problemas tanto para nosostros como para nuestro equipo de desarrollo si no se hace con precucion.
+
 - Siempre podemos optar por volver a editar nuestro fichero y hacer otro comint solucionando los cambios, aveces esta es la mejor opcion ya que no solo no alteramos el flujo de la rama sino dejamos constancia del error.
 
 Si aun asi lo necesitas adelante.
 
-*(1):* Con `HEAD~1` le estamos diciendo que retroceda un commit anterior.
-*(2):* En este `i` se debe cambiar por el numero de commits que queremos retroceder.
-*(3):* En caso de tener el hash del commit al cual nos queremos transladar podemos usarlo tambien.
+- **(1):** Con `HEAD~1` le estamos diciendo que retroceda un commit anterior.
+
+- **(2):** En este `i` se debe cambiar por el numero de commits que queremos retroceder.
+
+- **(3):** En caso de tener el hash del commit al cual nos queremos transladar podemos usarlo tambien.
 
 ### git checkout : Viajar en el tiempo o entre commits
 
@@ -297,6 +309,6 @@ Y nuestro grafico quedaria de la siguiente manera.
 Podemos observar como HEAD nos sigue y apunta al commit donde nos encontramos.
 
 Anteriormente vimos como deshacer un commit y para eso usamos el parametro `HEAD~1`, este parametro queria decir,
-*un commit anterior a HEAD* o en caso de `HEAD~i`, *retrocede 'i' veces en commits a partir de HEAD*.
+**un commit anterior a HEAD** o en caso de `HEAD~i`, **retrocede 'i' veces en commits a partir de HEAD**.
 
 
