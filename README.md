@@ -1,5 +1,6 @@
-# conclusions-of-AprendiendoGit
-Conclusiones del libro Aprendiendo Git de Miguel Angel Duran
+# miniBook-AboutGit
+Transladando mi poco conocimiento sobre git a un mini libro, el cual espero que ayude a
+muchos companeros
 
 ## Indice
 
@@ -243,5 +244,59 @@ estado `commited`
 *(3):* Cumple la misma funcion que *(2)* pero solo guarda un archivo en particular y los demas los ignora.
 
 ### git reset : Quiero eliminar mi commit y devolver una version anterior
+
+        $ git reset HEAD~1                          (1)
+        $ git reset HEAD~i                          (2)
+        $ git reset <hash>                          (3)
+
+Que ha pasado, al parecer cometiste un error al subir el commit y quiere volver a un version
+anterior, no hay problema con `git reset` podemos lograrlo pero antes:
+
+- `git reset` puede ser muy peligroso ya que alteramos los commis osea los nodos de nuestra rama esto puede cuasar problemas tanto para nosostros como para nuestro equipo de desarrollo si no se hace con precucion.
+- Siempre podemos optar por volver a editar nuestro fichero y hacer otro comint solucionando los cambios, aveces esta es la mejor opcion ya que no solo no alteramos el flujo de la rama sino dejamos constancia del error.
+
+Si aun asi lo necesitas adelante.
+
+*(1):* Con `HEAD~1` le estamos diciendo que retroceda un commit anterior.
+*(2):* En este `i` se debe cambiar por el numero de commits que queremos retroceder.
+*(3):* En caso de tener el hash del commit al cual nos queremos transladar podemos usarlo tambien.
+
+### git checkout : Viajar en el tiempo o entre commits
+
+        $ git checkout HEAD~1
+        $ git checkout HEAD~i
+        $ git checkout <hash>
+
+Talves uno de los comando mas interesantes en mi opinion y el que mas recomiendo usar sobre comandos como
+`git reset` o `git rebase` ya que `checkout` no altera la rama en ningun sentido, solo nos permite
+viajar y transladarnos entre commits y asi rebuscar entre el codigo que nos interesa.<br>
+Algo importante de aclarar es que cuando nos movemos entre commits con `checkout` HEAD se cuentra
+en un estado `separado` que no nos permite editar archivos pasados.
+
+Que ya te aburriste de ver tu codigo de commits antiguos y quieres volver al commit mas reciente? Ejecuta este comando
+
+        $ git switch <nombre de la rama>
+
+### Introducciondo HEAD
+HEAD no es la cabeza de la rama, eso hay que tenerlo claro, podemos pensar en HEAD como un GPS para
+saber con precicion en que parte de la rama nos encontramos. <br>
+Explicacion con grafico para entender con facilidad.
+
+        main | git init ----> A ----> B ----> C ----> D (HEAD)
+
+Podemos observar la rama `main` la cual inicia con git init, luego se hacen los siguientes commits,
+A, B, C, D; sinedo D el ultimo por lo tanto seria nuestro HEAD ya que es el ulitmo lugar donde nos encontramos. <br>
+Pero ahora ejecutaremos `git checkout` para movernos entre commits.
+
+        $ git checkout HEAD~2
+
+Y nuestro grafico quedaria de la siguiente manera.
+
+        main | git init ----> A ----> B (HEAD) ----> C ----> D
+
+Podemos observar como HEAD nos sigue y apunta al commit donde nos encontramos.
+
+Anteriormente vimos como deshacer un commit y para eso usamos el parametro `HEAD~1`, este parametro queria decir,
+*un commit anterior a HEAD* o en caso de `HEAD~i`, *retrocede 'i' veces en commits a partir de HEAD*.
 
 
