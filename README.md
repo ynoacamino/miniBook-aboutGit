@@ -181,7 +181,7 @@ Despues de haber ejecutado los mandos nustros archivos que inicialmente tenian l
 de `modified` pasaron a estar en `staging`.
 
 |   Archivos    |   Modified    |   Staging     |
-|-----------------------------------------------|
+|---------------|---------------|---------------|
 |   archivo.txt |               |   x           |
 |   archivo2.md |               |   x           |
 
@@ -311,4 +311,39 @@ Podemos observar como HEAD nos sigue y apunta al commit donde nos encontramos.
 Anteriormente vimos como deshacer un commit y para eso usamos el parametro `HEAD~1`, este parametro queria decir,
 **un commit anterior a HEAD** o en caso de `HEAD~i`, **retrocede 'i' veces en commits a partir de HEAD**.
 
+### Ignorando ficheros
+Ya sea porque tenemos archivos innesesarios, claves privadas o carpetas con codigo de produccion tarde o temparno
+querremos ingonar algun fichero y de esta manera impedir que se muestre en el repositorio
+publico, esto se logra escribiendo el nombre del archivo en el archivo `.gitignore`.
+
+        .env
+        dist
+        public
+        test.js
+        app.test.js
+        CLAVE_PRIVADA.js
+
+De esta manera le estamos diciendo a git que no haga seguimiento de esos archivos
+
+### Ignorar archivos que ya tienen seguimiento
+Hay veces que no nos damos cuenta o nos olvidamos a de colocar el nombre en `.gitignore`
+no pasa nada lo solucionaremos. <br>
+Primero simularemos el posible caso.
+
+        $ nvim clave.js
+        $ git add .
+        $ git commit -m "init project"
+
+Ahora Git hara seguimiento de nuestra clave junto con todo el projecto, para solucionarlo
+ejecutamos el siguiente comando
+
+        $ git rm --cached clave.js
+
+Este comando solo hara que `clave.js` se deje de rastrear, si ademas queremo borrarlo tenemos
+este otro comando.
+
+        $ git rm clave.js
+
+
+### Introduciendo ramas
 
