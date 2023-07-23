@@ -325,7 +325,7 @@ publico, esto se logra escribiendo el nombre del archivo en el archivo `.gitigno
 
 De esta manera le estamos diciendo a git que no haga seguimiento de esos archivos
 
-### Ignorar archivos que ya tienen seguimiento
+### git rm : Ignorar archivos que ya tienen seguimiento
 Hay veces que no nos damos cuenta o nos olvidamos a de colocar el nombre en `.gitignore`
 no pasa nada lo solucionaremos. <br>
 Primero simularemos el posible caso.
@@ -345,5 +345,123 @@ este otro comando.
         $ git rm clave.js
 
 
-### Introduciendo ramas
+### Que es una rama
+Antes dijimos que deberiamos pensar en los estamos de commit como una sesion fotographica, de la
+misma manera podemos pensar en una rama como un album de fotos.<br>
+Por defecto nuestra rama se llamara `main` y estara formada por el historial de nuestros commits
+
+        main || git init <---- commit A <---- B <---- C (HEAD)
+
+Podemos ver nuestra unica rama `main` esta contiene nuestros commit, mas no es la unica rama
+que podemos tener podemos crear ramas a partir de otra en nuestro caso `main` pero esto lo veremos un
+poco mas adelante.
+
+### git branch : Creando ramas
+
+        $ git branch <nombre>                       (1)
+        $ git switch -c <nombre>                    (2)
+
+En el siguiente ejemplo crearemos una rama con el nombre `newRama`.
+
+Estado inicial(antes de crear la rama)
+
+        main || git init <---- A <---- B (HEAD)
+
+Despues de crear la nueva rama a partir del commit 2, por lo que ejecutamos los siguiente
+
+        $ git branch newRama
+
+        main || git init <---- A <---- B
+                                        \
+                                         \
+                               newRama || B (HEAD)
+
+Como podemos ver nuestra rama desiende del commit B por lo que se crea como una copia
+exacta de este. A partir de este punto cada rama es independiente una de otra, cada una
+puede continuar con commits que la agan crecer, eliminarse, o incluso fucionarse con otra
+rama en algun momento.<br>
+En el siguiente ejemplo cada rama seguira creicendo por su lado y la rama `main` se
+volvera a dividir(bifurcar).
+
+                               otraRama || D <---- H
+                                          /
+                                         /
+        main || A <---- B <---- C <---- D <---- J <---- K (HEAD)
+                         \
+                          \
+                newRama || B <---- F <---- G
+
+- **(1)** Crea la nueva rama pero no cambiamos a esta.
+- **(2)** Crea la nueva rama y cambia a esta automaticamente.
+
+### git switch : Comandos utiles para manejar ramas
+    
+        $ git branch
+
+Muestra las ramas disponibles y la rama en la que nos encontramos, esta marcada con un asterisco.
+
+        $ git switch nombreDeLaRama
+        $ git switch -
+
+Git switch sirve para cambiar entre ramas, pasandole como parametro el nombre de la rama, o si
+solo queremo movernos a la rama donde estabamos previamnete podemos usar el `-`
+
+### git merge : Fusionando ramas
+
+        $ git merge nombreDeUnaRama
+
+Llego el momento, la pesadilla de muchos 'Fusionar ramas', mas no hay que asustarse
+aqui lo entenderas de una vez por todas y nunca mas le tendras miedo.
+
+Para esto vamos a imaginar que tenemos 3 commits, A, B, C, en C es que nos damos cuenta
+que queremos probar un nuevo framework o utilidad mas no queremos comprometer al projecto
+principal para esto creamos una rama llamada `experiment`.
+
+        main || A <----- B <----- C
+                                   \
+                                    \
+                       experiment || C
+
+Ya con nuestra rama creadad podemos continuar trabajando en el projecto principal y al
+mismo tiempo probar el nuevo framework, por lo que continuaremos haciendo commits
+a ambas ramas
+
+        main || A <----- B <----- C <---- D <----- E
+                                   \
+                                    \
+                       experiment || C <---- X <---- Y (HEAD)
+
+Todo a ido bien con las pruebas del nuevo framework y decides que es lo mejor para el
+projecto por lo que ahora quieres unir las ramas para tener tanto el nuevo framework
+como los cambios que fuiste avanzando mientras probabas este.
+
+Para esto debemos tener claro que queremos hacer, queremos que `main` contenga los cambios
+de `experiment` y dejar a `experiment` intacto? o quremos que experemente contenga los cambios de
+`main` y dejar a `main` intacto?
+
+Normamnete es la primera opcion ya que `main` debe contener los cambios principales y
+`experiment` desaparecer despues de cumplir su funcion, probar una nueva funcionalidad. Por
+lo que tomada una decicion nos aseguramos que estamos en la rama donde queremos ver
+reflejados los cambios. Ejecutamos:
+
+        $ git switch main
+
+
+        main || A <----- B <----- C <---- D <----- E (HEAD)
+                                   \
+                                    \
+                       experiment || C <---- X <---- Y
+
+Ya habiendonos movido ejecutamos
+
+        $ git merge experiment
+
+Despues de ejecutar git merge nos quedaria del siguiente modo:
+
+        main || A <----- B <----- C <---- D <----- E <---- F
+                                   \                     /
+                                    \                   /
+                       experiment || C <----- X <----- Y
+
+###
 
