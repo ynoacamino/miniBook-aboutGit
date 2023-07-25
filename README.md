@@ -149,6 +149,14 @@ Los comandos listados acontinuacion tendran la siguiente forma
         Casos de uso.
         Opinion.
 
+### git init : Inicializar un remositorio
+Un dato curioso es que cuando ya iva por mas de la mitad del libro me di cuenta que no explique como inicializar un repositorio, mi error.
+
+        $ git init
+        $ git init <ubicacion del directorio>
+
+Para inicializar un nuevo repositorio basta con ejecutar `git init` en la carpeto donde queremos que sea el repositorip o sino decirle en donde queremos inicalizarlo pasandole una ruta desde de `init`. Esto creara una carpeta `.git` en donde se guardaran todas nuestras versiones e informacion nesesaria para esta, por defecto esta carpeta esta oculta y es mejor dejarla asi ya que cualquier cambio podria dejar inutilizable el repositorio local
+
 ### git restore : Eliminar los cambios hechos a un archivo
 
         $ git restore archivo.txt
@@ -463,5 +471,39 @@ Despues de ejecutar git merge nos quedaria del siguiente modo:
                                     \                   /
                        experiment || C <----- X <----- Y
 
-###
+### git branch -d : Eliminando ramas
+
+        $ git branch -d <nombreDeRama>              (1)           
+        $ git branch -D <nombreDeRama>              (2)
+
+Ya habiendo fusinado nuestras ramas con la principal probablemente querramos borrarla ya que ya no nos es de uso. Para esto usaremos un comando ya conocido pero con un parametro nuevo, `-d` o `-D`.
+
+- **(1):** Eliminar la rama selecionada pero se asegura de haberle dado un uso primero, como hacer una pull request o un git merge, de otro modo no te dejara eliminarlo. ESto es muy util para no tener accidentes y perder muchas horas de trabajo.
+
+- **(2):** Elimina las ramas sin ningun tipo de advertencia, aveces es lo que queremos ya que habra casos donde no le hallamos dado ningun uso a esta, por lo tanto debamos eliminarla sin mas
+
+### git remote prune origin : Sincronizando ramas
+
+        $ git remote prune main
+        $ git remote prune <nombreDelRepositorioRemoto>
+
+Pero que pasa si llevamos varios dias sin sincronizarnos a nuestro repositorio remoto y ademas hemos creado varias ramas que no llegaron a nada en el remositorio local, o en el caso que las ramas que descargamos inicialmente ya no se encuentran en el repositorio remoto sino que las eliminaron.<br>
+Para sincronizar nuestras usamos `git remote prune origin`, ahhh no entiendo la sintaxis, me imagino que estaras diciendo algo asi pero esta bien que no entiendas ya que aun no vemos git desde la parte de repositorios remotos, aun asi me gustaria explicartelo de modo que cuando lleves a esa parte puedas regresar y entender con mas claridad. <br>
+
+- `git remote` con esto le decimos a Git que nos referimos a uno de los repositorios remotos (si, podemos tener mas de uno)
+- `prune` es la accion a realizar, en este caso elimnar ramas, "prune" traducido al espanol significa "podar"
+- `origin` con esto nos referimos al nombre del repositorio remoto, ya que podemos tener varios debemos darles un nombre para referenciar a uno, por defecto se le asigna origin por lo que la mayoria de veces usaremos este
+
+### Trabajando con repositorios remotos
+Ahora que sabes como controlar tu flujo de trabajo ya te encuentras listo para conpartir tu codigo con el mundo, espero mucho de ti. Talvez no estas convencido de subir tus repositorios a paginas como GitHub o GitLab ya que piensa que no es nesesario y hasta pesado, no temas yo te hare cambiar de opinion.
+
+#### Porque hacer mi codigo publico? Que gano yo?
+- Colaboracion: Al subir tu codigo a un repositorio publico tienes la oportunidad de trabajar con mas personas en un solo proyecto, retroalimentarse unos a otros y mejorar juntos.
+
+- Llevar un portafolio: Se que pensaras que aunque subas lo que desarrollas nadie querra ver tu trabajo, pero no es cierto cuando llegue el momento de buscar una oportunidad o demostrar tus habilidades te servira tener tus trabajos listos y publicos desde que comenzaste a programar hasta tus proyectos mas recientes e impresionantes. Todo cuenta!
+
+- Codigo abierto: Por que contribuir al codigo abierto? Pues nos ayuda a trbajar colaborativamente con otros desarrolladores y resivir feedback sobre nuestro codigo, es un ganar ganar. Aun no estas convencido? Pues quiero recordarte que muchas de las herramientas que usamos dia a dia se las debemos al codigo abierto, sin irnos muy lejos esta la plataforma virtual de la UNSA, asi es, "Moodle" es de codigo abierto y como todos los proyectos de codigo abierto es mantenido por desarrolladores que aportan su grano de arena para contruir tecnologias increibles. 
+
+- Mejoramiento personal: Si subimos un repositorio a GitHub, a menos que este en privado, todos podran ver tu codigo y jusgarlo y aunque suene feo es lo mejor. Recordemos que el desarrollador ya no escribe codigo para si mismo sino que escribe para todo su equipo de desarrollo actual y el que lo reemplazara cuando este se valla, esto quiere decir que tenemos que estar en constante mejoramiento de nustras practicas y una forma de lograrlo es haciendo nuestro codigo libre a miradas. Almenos yo cuando se esto entiendo que debo esforzarme mas y seguir las buenas practicas, mejorando constantemente.
+
 
