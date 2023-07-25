@@ -506,4 +506,113 @@ Ahora que sabes como controlar tu flujo de trabajo ya te encuentras listo para c
 
 - Mejoramiento personal: Si subimos un repositorio a GitHub, a menos que este en privado, todos podran ver tu codigo y jusgarlo y aunque suene feo es lo mejor. Recordemos que el desarrollador ya no escribe codigo para si mismo sino que escribe para todo su equipo de desarrollo actual y el que lo reemplazara cuando este se valla, esto quiere decir que tenemos que estar en constante mejoramiento de nustras practicas y una forma de lograrlo es haciendo nuestro codigo libre a miradas. Almenos yo cuando se esto entiendo que debo esforzarme mas y seguir las buenas practicas, mejorando constantemente.
 
+### Iniciando un repositorio en GitHub
 
+#### Aclaracion:
+Se esta suponiendo que usted ya tiene configurado las credenciales ssh con github, sino aun no lo a hecho dejare algun libro y link para que pueda seguir los pasos sin ningun problema
+
+- Para esto vamos a la seccion repositorios en nuestro perfil y le pulsamos `new`
+- Luego con pedira llenar los datos, aqui escribimos el nombre, descripcion, si queremos que se cree el archivo .gitignore o el archivo README.txt, la visibilidad del repositorio, etc.
+- Ya despues de crear el repositorio veras la pestana `code` la cual presionaras y te dirigiras a `SHH`, ya estando ahi le das al boton de copiar
+- Listo ya tienes la referencia a tu repositorio remoto
+
+### git clone : Clonando un repositorio ya creado
+
+        $ git clone <Lo que copiaste anteriormente>
+
+Por ejemplo:
+
+        $ git clone git@github.com:Diegoo11/miniBook-aboutGit.git
+
+### git remote : Subir mi proyecto local a remoto y otras explicaciones
+
+#### Subir de local a remoto
+
+        $ git remote add <nombre> <direccion del nuevo repositorio>
+
+Ejemplo:
+        
+        $ git remote add origin git@github.com:Diegoo11/miniBook-aboutGit.git
+
+Te acuerdas que anteriormente ya vino `remote`, llego el momento de entenderlo a la perfeccion
+
+1. `remote`: le desimoq que queremos acceder a la configuracion de los repositorios remotos
+2. `add`: en este caso queremos anadir una nueva direccion a nuestro repositorio
+3. `<nombre>`: Hay que aclarar que podemos tener mas de un repositorio remoto enlazado al mismo en local, entonces la forma de diferenciar uno de otro es darle un nombre, este por defecto es `origin` pero tambien podemos darle cualquier nombre
+4. `<direccion>`: Aqui copiamos la direccion ssh de un repositorio remoto, de preferecia que este vacio ya que asi no tendremos problemas al subir los archivos por primera vez, por el contrario si ya contiene ficheros y estos llevan los mismos nombre podriamos estar en problemas ya que habra conflictos.
+
+#### Eliminar en enlace entre local y remoto
+
+        $ git remote remove <nombre>
+
+#### Listar los repostirios remotos
+
+        $ git remote
+
+#### Renombrar un repositorio remoto
+
+        $ git remote rename <nombreActual> <nuevoNombre>
+
+### git push : Subir commits a remoto
+
+        $ git push                                  (1)
+        $ git push <remoto> <rama>                  (2)
+
+**(1):** Aclaracion, cuando no se envia ningun parametro despues de `push` git asumira lo siguiente, `git push origin <ramaActual>`, por lo que siempre seria mejor completar los otros parametros en especial si tenemos varias ramas, ya que nos permitira tener conciencia de en donde queremos hacer el push
+**(2):** Ejemplo:
+
+        $ git push origin main
+
+La palabra `push` traducida al espanol seria "empujar", y tiene todo el sentido porque queremos subir nuestros cambios a remoto
+empujandolos desde el local, empujamos lo commits que aun no estan subidos a remoto
+
+
+        A ----> B ----> C ----> D ----> E ----> F
+                        ^                       ^
+                        |                       |
+                    git push (1)            git push (2)
+
+En el psuh (1) subimos los commits A, B, C; posteriormente seguimos trabanjando y volvemos
+a hacer git push (2) en este caso subiremos los commits C, E y F ya que git sabes que commit ya estan subidos en remoto y solo sube lo que son nuevos
+
+
+### git pull : Sincronizar con remoto
+
+        $ git pull
+        $ git pull <remoto> <rama>
+
+Antes solo nos preocupabamos por nuestros cambios pero ahora trabajamos con repostirios remoto
+y esto incluye que podemos tener cambios que nosotros no hicimos, sino que los hizo nuestro equipo de
+desarrollo, estos cambios no se sincronnizan automaticamente con nuestro repositroio local para esto
+ejcutamos `git pull`. Con esto le estamos diciendo que sincronize los cambios con el remoto.
+
+### git fetch : Trae los cambios mas no altera tu espacio de trabajo
+
+        $ git fetch
+        $ git fetch <remoto> <rama>
+
+Pero que pasa si estamos trabajando en algo importante en local pero en remoto borraron o sobrescribieron nuestro codigo,
+al hacer pull perderiamos nuestro avanze y horas de trabajo, para esto existe git fetch.
+Trae los cambios mas no los fusiona automaticamente sino que nosotros tenemos que hacerlo, pero primero
+podemos ver que cambios hay y a que parte de nuestro proyecto compromete. A continuacion dejo comandos utiles
+que nos ayudaran con este proposito:
+
+        $ git log origin/main
+
+Con este podemos ver que commits no estan en nuestro repositorio y q archivos modifican pero nada mas.
+
+        $ git diff origin/main
+
+Este comando nos proporsionara cierta informacion aunque un poco confusa sobre los cambios en cada arhivo,
+si bien puede ser util en ciertos casos, lo nomral es que se torne turbio cuando hay muchos cambios a diferentes archivos
+
+        $ git difftools origin/main
+
+Antes de ejecutar este comando debemos tener configurado una herramienta para este, normalmente yo uso
+vim o neoVim para esta tarea ya que son las mas faciles de configurar. Si quires que te explique como hacerlo, al final
+del libro tendre una seccion para eso.
+Este comando es muy util ya que habre una interfas grafica para mostrarnos el repositorio actual a la izquierda y el modificado con los nuevos commits
+a la derecha, de esta manera comparar con mayor presicion y tomar una mejor decicion
+
+
+        
