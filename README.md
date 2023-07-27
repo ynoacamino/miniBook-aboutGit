@@ -615,4 +615,58 @@ Este comando es muy util ya que habre una interfas grafica para mostrarnos el re
 a la derecha, de esta manera comparar con mayor presicion y tomar una mejor decicion
 
 
+## Conceptos utiles
+### Que es fork
+Fork cuando hablamos de git es la accion de copiar el codigo de alguien es mas, esta copia puede recibir
+cambios que talvez no han sido aprobadas por el dueno del repositorio original mas como es
+un fork ya no pertenece a este, mas siempre esta copia apuntara a su repositorio original
+
+Debemos entender esto como una copia del codigo orignal que cambia para ser mejor
+sin afectar al proyecto original.
+Cuando haces un fork de un repositorio publico, este sera tuyo y podras modificarlo a tu gusto
+
+### Como hacer un fork
+En este caso usaremos github para hacer nuestro primer fork, no dirigimos al repositorio
+al que queremos hacer fork y buscamos en la parte superiro derecha el boton `fork`,
+haciendo click a este crearemos nuestro fork y se almacnara junto a nuestros otros
+repositorios. Muy facil.
+
+### Aportando con Pull request
+Imaginemos el siguiente caso: "Encontramos un proyecto de codigo abierto en github
+, nos parece muy interesandte y prometedor pero tiene un error que provaca
+su cierre inmediato, como piensas que vale la pena ayudar a su desarrollo haces un
+fork al proyecto y editas su codigo desde el fork que creaste de esta manera solucionas
+el error que provocaba el cierre inmediato, pero... ahora como le haces llegar al
+creador la solucion a su error?". Aqui entran las pull request.<br>
+Una pull request es una solicitud de cambio o edicion de codigo, son muy utiles para
+colaborar con personas ajenas al proyecto pero que tienen la intencion de ayudar al
+desarrollo de este.
+
+Volviendo al ejemplo anterior: "Teniendo conocimiento sobre una pull request hacemos una
+con nuestros cambios a al proyecto principal. Con esto el dueno del proyecto sera
+avisado y podra revisar nuestra sugerencia de cambios, y la breve descripcion que le
+proporsionamos junto a la pull request"
+
+Podemos hacer pull request de cualquier tipo de cambio, desde cualquier rama a otra, claro
+si los cambios que desarrollarmos tienen conflico este se tiene que soluconar antes de aceptar
+continuar la pull request. Ademas no es seguro que sea aceptada ya que la decicion final
+la tiene el dueno original o su equipo de trabajo.
+
+### Sincronizar y poner al dia mi fork
+
+        $ git remote add <nombre> <direccionDelRepoOriginal>
+
+Ejemplo: 
         
+        $ git remote add upstream git@github.com:Diegoo11/miniBook-aboutGit.git
+
+Te preguntaste para que nos sirviria tener vinculado dos repositorios remotos a un solo repositorio
+local? Pues aqui esta la razon ya que asi podemos hacer `git pull upstream main` y traer todos
+los cambios del repositorio orignal a nuestro fork y no quedarnos desatualizados
+
+## Flujos de trabajo en Git
+En esta seccion dare introduccion a las maneras mas eficientes de trabajar en grupo
+usando git mas no se debe tomar como reglas estrictas ya que cada equipo es diferente y tiene
+habilidades y nesesidades distintas, estas estrategias se deben tomar como ayuda para
+encontrar la mejor manera de trabaja en conjunto.
+
