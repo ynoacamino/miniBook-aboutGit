@@ -670,3 +670,9 @@ usando git mas no se debe tomar como reglas estrictas ya que cada equipo es dife
 habilidades y nesesidades distintas, estas estrategias se deben tomar como ayuda para
 encontrar la mejor manera de trabaja en conjunto.
 
+**Importate: Esta parte estaba planeado pero me percate**
+1. NO tengo la experiencia nesesaria para hablar sobre este tema y cumplir con el proposito del libro, si bien se la teoria no tuve la oportunidad de ponerla en practica 
+2. Esto no significa que nunca continuare con esta seccion, solo la pospondre para en algun momento culminarla de la mejor manera posible
+
+## Buenas practicas
+
