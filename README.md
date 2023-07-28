@@ -675,4 +675,42 @@ encontrar la mejor manera de trabaja en conjunto.
 2. Esto no significa que nunca continuare con esta seccion, solo la pospondre para en algun momento culminarla de la mejor manera posible
 
 ## Buenas practicas
+### Cada cuanto se debe hacer un commit?
+Es una pregunta que hasta hoy me cuesta decidirme por una respuesta, podemos pensar en que cada cambio por lo mas minusculo que paresca merece un commit y no estarimos mal ya que ese cambio puede significar un cambio en toda la estructura y su funcionamiento o solo la remocion de un comentario obsoleto. Entonces como sabesmos cada cuanto hacer un commit? <br>
+Desde mi punto de vista hay ciertos criterios sa seguir:
+- Cada ves que sentimos que damos un pato adelante para llegar a la meta. Esto quiere decir que no debemos hacer commit por gusto ya que te confunde a ti como a tu equipo, commits como 'test', '.', '...', 'nada nuevo'
+- Agrupa commits. Me costo mucho entender este punto, yo era quien si veia que en un archivo hago lo mismo que en otro en lugar de hacer un commit de los dos archivos al mismo tiempo hacia un commit para cada uno. Por que? Porque me gustaba ver en mi barra de `contributions in the last year` muchos numeros. Ahora entiendo que esto es muy malo ya que volvemos a los mismo que el anterior punto "commits sin sentido", siempre que puedas intenta agrupar los archivos que tienen que ver con el mismo commit
 
+### Como nombrar a mis commits
+Esta parte es importante para trabajar de manera comoda con tu equipo, definir si los nombres de los commits estaran ingles o espanol, si usaran etiquetas o no, que tipo de commits usaran, etc. Primero se vera cual es la manera correcta o la mas aceptada de ponerle nombre a los commits en ingles.
+
+- Usar la manera imperativa: <br>
+Normalmente cuando nombramos commits usamos verbos en pasado como `added`, `fixed`, `removed`, etc. Pero no es correcto ya que no estamos diciendo que la accion ya a pasado anteriormente y recien la estamos infomando, sino queremos decir lo contrario, la accion sucedio en ese commit. Esto lo logramos escribiendo de manera imperativa
+
+        new file added                  ❌
+
+        add new file                    ✅
+
+- No usar punto final ni puntos supencivos: <br>
+Usar punto final es totalmente innesesario, por otro lado los puntos suspencivos o "etc" da espacio a ambiguedad e inseguridad sobre lo que hace exactamente el commit.
+
+- Usar etiquetas: <br>
+Cuando trabajamos en un proyecto bastante grande o monorepositorios donde en un solo repositorio tenemos varios proyecto es util usar etiquetas antes de los commit para anadir mas significado a estos, a este tipo de commit se le llama commits semanticos y se escriben de la siguiente manera: 
+
+        <tipo> [alcance]: "descripcion"
+
+En tipo podemos rellenar con los siguientes prefijos:
+
+- feat: para una nueva característica para el usuario.
+- fix: para un bug que afecta al usuario.
+- perf: para cambios que mejoran el rendimiento del sitio.
+- build: para cambios en el sistema de build, tareas de despliegue o instalación.
+- ci: para cambios en la integración continua.
+- docs: para cambios en la documentación.
+- refactor: para refactorización del código como cambios de nombre de variableso funciones.
+- style: para cambios de formato, tabulaciones, espacios o puntos y coma, etc; no afectan al usuario.
+- test: para tests o refactorización de uno ya existente.
+
+Y en alcance rellenamos con la parte a la que afecta este cambio, puede ser como: data base, web, backEnd, o algun framework en particular
+
+### Poner nombre a las ramas
