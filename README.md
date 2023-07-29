@@ -713,4 +713,59 @@ En tipo podemos rellenar con los siguientes prefijos:
 
 Y en alcance rellenamos con la parte a la que afecta este cambio, puede ser como: data base, web, backEnd, o algun framework en particular
 
-### Poner nombre a las ramas
+
+### Poner un buen nombre a tus ramas
+Normalmnete la razon de usar ramas es la de tener un orden y no chocar con otros
+trabajos de tu equipo, por esto es nesesario poder darles un buen nombre que nos
+diga sin tener que revisar todos lo commits, su proposito. Aca te dejo algunas pautas
+
+- Tener regularidad: Si usamos un estilo por defecto no podemos cambiarlo o usarlo solo en ciertas ramas o inadecuadamente, tenemos que seguirlo en todo el proyecto
+
+- Usar prefijos: Para mostrar mas informacion a simple vista podemos usar prefijos para senalar el prposito de la rama como:
+
+    - bug: Para solucionar un bug conocido
+    - feature: Agregar una nueva caracteristica
+    - experiment: Experimentos con el codigo que nunca llegaran a produccion
+    - hotfix: Solucionar pequenos errores para la version final
+
+## Que es el stash
+No te ah pasado que estas escribiendo codigo pero te das cuenta de un error en otros archivos muy distintos?<br>
+Tienes dos opciones, borras tu trabajo actual y vas a solucionar el otro problma, o envias un commmit incompleto y vas a solucionar el otro problmea
+esto debido a que no podemos cambiar de ramas, hacer commit sin antes tener todo guardado correctamente.<br>
+Cual escojes? Yo escojo la tercera opcion, el `stash`, alameceno mis cambios en el stash entonces cambio entre ramas y soluciono el problema
+luego vuelvo y recupero mis cambios previos del stash. Muy facil verdad?
+
+- Comando utiles con stash:<br>
+Como almacenar los cambios en el stash
+
+        $ git stash
+        $ git stash push
+
+Ten cuidado con los archivos recien creados y que aun no tienen un commit previo, pues al intentar
+almacenarlos en el stash estos se borraran, para evitar eso usamos:
+
+        $ git stash push -u
+
+- Listar los stash:<br>Este comando es muy util ya que el stash tiene forma de pila, ultimo en entrar primero en salir, nuestras cambios se almacenan con un hash(incomprensible para nosotros), para poder direfernciar entre cambios ademas del hash tenemos un indice y de este nos apoyaremos para indicar y especificar un cambio en especifico
+
+        $ git stash list
+
+- Recuperar el ultimo stash:<br>
+Con pop recuperamos el ultimo stash y por su natulareza(una pila) recupearmos el que este mas arriba
+de la pila, al mismo tiempo que lo eliminamos
+
+        $ git stash pop
+
+En caso que no lo queramos elimnar y solo recuperar podemos usar
+
+        $ git stash apply
+
+
+- Crear una rama apartir de un stash:<br>
+Hay veces donde los cambios son bastante grandes y no hay razon para no almacenarlos en una rama
+aparte, aqui podemos usar
+
+        $ git stash branch <nombreDeRama> <i>
+
+Donde `i` es el indice del stash desde el cual queremos nuestra rama
+
