@@ -1,87 +1,78 @@
 # miniBook-AboutGit
 Transladando mi poco conocimiento sobre git a un mini libro, el cual espero que ayude a
-muchos companeros
+muchos compañeros
 
-## Indice
+## Índice
 
-### 1. Introduccion
-### 2. Teoria
-### 3. Instalacion y configuracion
-### 4. Lista y explicacion de comandos
+### 1. Introducción
+### 2. Teoría
+### 3. Instalación y configuración
+### 4. Lista y explicación de comandos
 #### 4.1. Local
 #### 4.2. Ramas
 #### 4.3. Remoto
-### 5. Conceptos utiles
+### 5. Conceptos útiles
 ### 6. Flujos de trabajo
-### 7. Buenas Practicas
+### 7. Buenas Prácticas
 ### 8. Stash
-### 9. Trucos utiles
+### 9. Trucos útiles
 ### 10. GitHub CLI
 
-## Introduccion
-### Que es este repositorio
-Creo este repositorio para dar seguridad a mis conocmientos adquiridos al leer el libro, ademas de dejar escrito lo que aprendi y en especial mi punto de vista como desarrollador que al igual que mis companeros esta en constante aprendizaje.
+## Introducción
+### ¿Qué es este repositorio?
+Creo este repositorio para dar seguridad a mis conocimientos adquiridos al leer el libro, además de dejar escrito lo que aprendí y en especial mi punto de vista como desarrollador que, al igual que mis compañeros, está en constante aprendizaje.
 
-### Que es git
-Git es un software de codigo abierto, disenado originalmente por el creador de linux...<br>
-Si bien la historia de git, de donde sale, cual fue la nesecidad de crearlo, porque en la actulidad solo
-escuchamos de git y no de otro software que cumpla la misma funcion, es muy interesante y vale la pena
-entenderlo, en este repositorio solo se hablara de la parte practica, entonces, que es git. <br>
-Git es un software de control de veriones y copias de seguridad, este de base en repositorios
-en el cual se encuentra el codigo del proyecto y el historico de los cambios
+### ¿Qué es git?
+Git es un software de código abierto, diseñado originalmente por el creador de Linux...<br>
+Si bien la historia de git, de dónde sale, cuál fue la necesidad de crearlo, por qué en la actualidad solo escuchamos de git y no de otro software que cumpla la misma función, es muy interesante y vale la pena entenderlo; en este repositorio solo se hablará de la parte práctica. Entonces, ¿qué es git? <br>
+Git es un software de control de versiones y copias de seguridad, este se basa en repositorios en los cuales se encuentra el código del proyecto y el histórico de los cambios.
 
-Un repositorio puede ser locales o remotos, estos ultimos son los que nos permiten trabajar de manera colaborativa
-Cada repositorio tiene un rama `main`, cuando nombramos ramas debemos pensar en estas como una linea de tiempo
-en la cual se puede retroseder, dividir y fusionar
+Un repositorio puede ser local o remoto, estos últimos son los que nos permiten trabajar de manera colaborativa.
+Cada repositorio tiene una rama `main`; cuando nombramos ramas debemos pensar en estas como una línea de tiempo en la cual se puede retroceder, dividir y fusionar.
 
-Git nos ayuda a llevar ese registro de cambios que hacemos a nuestro codigo, y ademas darnos la seguridad
-que nuestro codigo puede retroceder a una verison anterior
+Git nos ayuda a llevar ese registro de cambios que hacemos a nuestro código y además darnos la seguridad de que nuestro código puede retroceder a una versión anterior.
 
-## Teoria
+## Teoría
 
 ### Los tres estados de los archivos en Git
-Nuestro repositorio contiene los archivos de nuestro proyecto, estos archivos pueden tener diferentes
-estados cada uno con un proposito:
+Nuestro repositorio contiene los archivos de nuestro proyecto, estos archivos pueden tener diferentes estados, cada uno con un propósito:
 
-- Modified (modificado): Este estado es al que pasa un archivo que alteramos en algun aspecto, ya sea borrar, anadir o modificar una linea, estos cambios todavia no estas preparados para ser confirmados.
+- **Modified** (modificado): Este estado es al que pasa un archivo que alteramos en algún aspecto, ya sea borrar, añadir o modificar una línea, estos cambios todavía no están preparados para ser confirmados.
 
-- Staged (preparado): Cuando marcamos nuestros archivos con este estado le estamos diciendo a Git que estan preparados para ser confirmados. Estos se encuentra en un estado transitoria para luego ser confirmados.
+- **Staged** (preparado): Cuando marcamos nuestros archivos con este estado le estamos diciendo a Git que están preparados para ser confirmados. Estos se encuentran en un estado transitorio para luego ser confirmados.
 
-- Commited (confirmado): ESto quiere decir que nuestro archivo se encuntra confirmado y guardad en nuestro repositorio local. La accion de pasar de `stage` => `commited` se llama "commit".
+- **Committed** (confirmado): Esto quiere decir que nuestro archivo se encuentra confirmado y guardado en nuestro repositorio local. La acción de pasar de `stage` => `committed` se llama "commit".
 
 #### NO ENTIENDO, AYUDA 
-Es normal que esto te confunda, la mejor forma de entender los estados de los ficheros en Git es pensado
-en una sesion de fotografia. Con un panel, una camara y los objetos que queremos fotografiar.
+Es normal que esto te confunda, la mejor forma de entender los estados de los ficheros en Git es pensando en una sesión de fotografía. Con un panel, una cámara y los objetos que queremos fotografiar.
 
-- Al principio nuestro panel va a estar vacio ya que no tenemos nada nuevo a lo sque queramos fotografiar.
+- Al principio nuestro panel va a estar vacío ya que no tenemos nada nuevo a lo que queramos fotografiar.
 
-- Oh, uno de nuestros objetos cambio de color. Esto representa el estado de `Modified`.
+- Oh, uno de nuestros objetos cambió de color. Esto representa el estado de `Modified`.
 
-- Como nuestro objeto cambio, asi que lo preparamos y lo dejamos dentro de panel. Mover nuestro objeto y prepararlo representa al accion de `add` y el panel el estado `Stage`.
+- Como nuestro objeto cambió, así que lo preparamos y lo dejamos dentro del panel. Mover nuestro objeto y prepararlo representa la acción de `add` y el panel representa el estado `Staged`.
 
-- Al parecer mas objetos an estado cambiando, de modo que tambien los preparemos y los dejamos dentro del panel. Podemos preparar varios archivos al mismo tiempo, esto es porque algunos cambios tienen relacion directa con otros de modo que los podemos guardar juntos.
+- Al parecer más objetos han estado cambiando, de modo que también los preparamos y los dejamos dentro del panel. Podemos preparar varios archivos al mismo tiempo, esto es porque algunos cambios tienen relación directa con otros, de modo que los podemos guardar juntos.
 
-- Ahora con todos nuestros objetos listos para la fotografia procedemos a tomar la foto, de esta manera no nos olvidaremos de este momento. La accion de tomar la foto hace referencia a la accion `commit` ya que con esto guardamos nuestros cambios ademas de darles un nombre o asunto.
+- Ahora con todos nuestros objetos listos para la fotografía, procedemos a tomar la foto, de esta manera no nos olvidaremos de este momento. La acción de tomar la foto hace referencia a la acción `commit` ya que con esto guardamos nuestros cambios además de darles un nombre o asunto.
 
-- Ya tenemos nuestra foto!, ahora nunca olvidaremos este momento, procedemos a dejar nuestros obejtos en su lugar, fuera del panel. Esto representa el fin del ciclo de vida de los ficheros, de este modo despuse de hacer `commit` pasaran a estar sin modificar otrave, de modo que podemos repetir el ciclo.
+- ¡Ya tenemos nuestra foto! Ahora nunca olvidaremos este momento, procedemos a dejar nuestros objetos en su lugar, fuera del panel. Esto representa el fin del ciclo de vida de los ficheros, de este modo después de hacer `commit` pasarán a estar sin modificar otra vez, de modo que podemos repetir el ciclo.
 
-Espero que de esta manera ayas podido entender con mas claridad como funionan los estados de los archivos y las accioines que pueden modificar a estos.
+Espero que de esta manera hayas podido entender con más claridad cómo funcionan los estados de los archivos y las acciones que pueden modificarlos.
 
 ### Git y GitHub no son lo mismo
-Parece un poco ovbio pero todavia escucho personas penser eso, y no tiene nada de malo
-a simple vista cumplen la misma funcion.
+Parece un poco obvio pero todavía escucho personas pensar eso, y no tiene nada de malo
+a simple vista cumplen la misma función.
 
-- Git: Es un sistema de versionamiento y control, es decir nos ayuda a controlar nuestros cambios, este se ejecuta de manera local, de la misma manera almacena los repositorios en nuestra maquina.
-- GitHub: Es un servicio de hospedamiento remoto de nuestros repositorios, ofrecido actualmente por Microsoft, y no es el unico que nos ofrece tal cosa, por ejemplo tenemos a GitLab o BitBucket, los cuales nos ofrecen los mismo. En resumen GitHub solo almacenara nuestros repositorios en la nube estando asi listos para podeer usarlos desde cualquier parte o momento, ya se por nosotros o por un equipo de desarrollo.
+- Git: Es un sistema de versionamiento y control, es decir, nos ayuda a controlar nuestros cambios. Se ejecuta de manera local y almacena los repositorios en nuestra máquina.
 
-## Instalcion y configuracion
-Aqui se daran algunos pasos y recomendaciones para descargar y configurar git, mas no reemplaza leer la documentacion de su pagina oficial,
-ademas que solo veremos las formas de instalarlo en algunos sistemas operativos.
+- GitHub: Es un servicio de hospedaje remoto de nuestros repositorios, ofrecido actualmente por Microsoft, y no es el único que nos ofrece tal cosa. Por ejemplo, tenemos a GitLab o BitBucket, los cuales nos ofrecen lo mismo. En resumen, GitHub solo almacenará nuestros repositorios en la nube, estando así listos para poder usarlos desde cualquier parte o momento, ya sea por nosotros o por un equipo de desarrollo.
+
+## Instalación y configuración
+Aquí se darán algunos pasos y recomendaciones para descargar y configurar Git, pero no reemplaza leer la documentación de su página oficial. Además, solo veremos las formas de instalarlo en algunos sistemas operativos.
 
 ### Comprobando si ya tengo instalado Git
-Esto es muy facil solo es ejecutar el siguiente comando en la terminal. Una aclaracion,
-siempre que vean un signo de dolar anteponiendo al comando, quiere decir que ese comando se
-ejecuta en una terminal, no es nesesario y no se debe copiar directamente en esta.
+Esto es muy fácil, solo es ejecutar el siguiente comando en la terminal. Una aclaración: siempre que vean un signo de dólar anteponiendo al comando, quiere decir que ese comando se ejecuta en una terminal. No es necesario y no se debe copiar directamente en esta.
 
         $ git --version
 
@@ -89,24 +80,21 @@ Si tenemos instalado git nos saldra lo siguiente:
 
         git version 2.41.0
 
-Si al contrario el mensaje de vuelta es algo como `git: command not found` es porque aun no tenemos
-instaldo Git
+Si, por el contrario, el mensaje de vuelta es algo como `git: command not found`, es porque aún no tenemos instalado Git.
 
 ### Instalando Git
 - Ubuntu: Tan simple como ejecutar
 
         $ apt-get install git
 
-- Windows: Tambien simple, dirijete a la pagina oficil y descarga el instalador, sigues lo pasos y le das siguiente a todo.
+- Windows: También es simple, dirígete a la página oficial y descarga el instalador. Luego, sigue los pasos y dale "Siguiente" a todo.
 
 
 ### Configurando mi nombre y correo
-Al hacer cambios en el repositorio estamos modificando archivos que podrian ser muy importante
-ya se en el caso de estar trabanjo solo o en un equipo por esta razon tenemos que firmar
-con nuestro nombre y correo cada cambio que hacemos, de esta manera, los demas integrnates podran
-saber quien hizo que cosa y haci tener un mejor control.
 
-Ejecutamos los siguientes comandos cambiando la informacion con la correspondiente:
+Al hacer cambios en el repositorio, estamos modificando archivos que podrían ser muy importantes. Ya sea en el caso de estar trabajando solo o en un equipo, por esta razón, tenemos que firmar con nuestro nombre y correo cada cambio que hacemos. De esta manera, los demás integrantes podrán saber quién hizo qué cosa y así tener un mejor control.
+
+Ejecutamos los siguientes comandos, cambiando la información con la correspondiente:
 
         $ git config --global user.name "miNombreDeUsuario"
         $ git config --global user.email "miCorreo@example.com"
@@ -116,26 +104,24 @@ En mi caso seria de la siguiente manera:
         $ git config --global user.name "Diegoo11"
         $ git config --global user.email "ynoacamino@gmail.com"
 
-Explicacion: Con la bandera `--global` le estamos diciendo que queremos que esta configuracion
-se guarde y este disponible para todos nuestros repositorios, tambien podemos querer
-que solo se guarde en un repositorio en especifico, para ese caso nos dirijimos a la carpeta raiz de este
+Explicación: Con la bandera `--global` le estamos diciendo que queremos que esta configuración
+se guarde y esté disponible para todos nuestros repositorios, también podemos querer
+que solo se guarde en un repositorio en específico, para ese caso nos dirigimos a la carpeta raíz de este
 y ejecutamos.
+
 
         $ git config user.name "miOtroNombre"
 
-De esta manera se guardara solo en el repositorio especifico.
+De esta manera se guardará sólo en el repositorio específico.
 
-### Listar la configuracion
-Un comando muy util que uso siempre antes de abrir mi editor de codigo, es listar mi configuracion
-ya sea porque no estoy seguro cual sera mi rama por defecto o aun mas importante, saber
-con que correo estoy trabajando, ya que si uso un correo y nombre diferente del que tienen concimiento
-mi equipo de desarrollo causare confucion y es lo que menos queremos. <br>
+### Listar la configuración
+Un comando muy útil que uso siempre antes de abrir mi editor de código, es listar mi configuración ya sea porque no estoy seguro cual será mi rama por defecto o aún más importante, saber con que correo estoy trabajando, ya que si uso un correo y nombre diferente del que tienen conocimiento mi equipo de desarrollo causará confusión y es lo que menos queremos. 
+<br>
 Para esto usaremos el siguiente comando.
 
         $ git config --list
 
-Nos mostrara toda nuestra configuracion global, en caso de solo querer la configuracion local del repositorio
-podemos ejecutar el siguiente.
+Nos mostrará toda nuestra configuración global, en caso de solo querer la configuración local del repositorio podemos ejecutar el siguiente.
 
         $ git config --local --list
 
