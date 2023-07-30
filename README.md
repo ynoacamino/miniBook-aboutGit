@@ -1,87 +1,78 @@
 # miniBook-AboutGit
 Transladando mi poco conocimiento sobre git a un mini libro, el cual espero que ayude a
-muchos companeros
+muchos compañeros
 
-## Indice
+## Índice
 
-### 1. Introduccion
-### 2. Teoria
-### 3. Instalacion y configuracion
-### 4. Lista y explicacion de comandos
+### 1. Introducción
+### 2. Teoría
+### 3. Instalación y configuración
+### 4. Lista y explicación de comandos
 #### 4.1. Local
 #### 4.2. Ramas
 #### 4.3. Remoto
-### 5. Conceptos utiles
+### 5. Conceptos útiles
 ### 6. Flujos de trabajo
-### 7. Buenas Practicas
+### 7. Buenas Prácticas
 ### 8. Stash
-### 9. Trucos utiles
+### 9. Trucos útiles
 ### 10. GitHub CLI
 
-## Introduccion
-### Que es este repositorio
-Creo este repositorio para dar seguridad a mis conocmientos adquiridos al leer el libro, ademas de dejar escrito lo que aprendi y en especial mi punto de vista como desarrollador que al igual que mis companeros esta en constante aprendizaje.
+## Introducción
+### ¿Qué es este repositorio?
+Creo este repositorio para dar seguridad a mis conocimientos adquiridos al leer el libro, además de dejar escrito lo que aprendí y en especial mi punto de vista como desarrollador que, al igual que mis compañeros, está en constante aprendizaje.
 
-### Que es git
-Git es un software de codigo abierto, disenado originalmente por el creador de linux...<br>
-Si bien la historia de git, de donde sale, cual fue la nesecidad de crearlo, porque en la actulidad solo
-escuchamos de git y no de otro software que cumpla la misma funcion, es muy interesante y vale la pena
-entenderlo, en este repositorio solo se hablara de la parte practica, entonces, que es git. <br>
-Git es un software de control de veriones y copias de seguridad, este de base en repositorios
-en el cual se encuentra el codigo del proyecto y el historico de los cambios
+### ¿Qué es git?
+Git es un software de código abierto, diseñado originalmente por el creador de Linux...<br>
+Si bien la historia de git, de dónde sale, cuál fue la necesidad de crearlo, por qué en la actualidad solo escuchamos de git y no de otro software que cumpla la misma función, es muy interesante y vale la pena entenderlo; en este repositorio solo se hablará de la parte práctica. Entonces, ¿qué es git? <br>
+Git es un software de control de versiones y copias de seguridad, este se basa en repositorios en los cuales se encuentra el código del proyecto y el histórico de los cambios.
 
-Un repositorio puede ser locales o remotos, estos ultimos son los que nos permiten trabajar de manera colaborativa
-Cada repositorio tiene un rama `main`, cuando nombramos ramas debemos pensar en estas como una linea de tiempo
-en la cual se puede retroseder, dividir y fusionar
+Un repositorio puede ser local o remoto, estos últimos son los que nos permiten trabajar de manera colaborativa.
+Cada repositorio tiene una rama `main`; cuando nombramos ramas debemos pensar en estas como una línea de tiempo en la cual se puede retroceder, dividir y fusionar.
 
-Git nos ayuda a llevar ese registro de cambios que hacemos a nuestro codigo, y ademas darnos la seguridad
-que nuestro codigo puede retroceder a una verison anterior
+Git nos ayuda a llevar ese registro de cambios que hacemos a nuestro código y además darnos la seguridad de que nuestro código puede retroceder a una versión anterior.
 
-## Teoria
+## Teoría
 
 ### Los tres estados de los archivos en Git
-Nuestro repositorio contiene los archivos de nuestro proyecto, estos archivos pueden tener diferentes
-estados cada uno con un proposito:
+Nuestro repositorio contiene los archivos de nuestro proyecto, estos archivos pueden tener diferentes estados, cada uno con un propósito:
 
-- Modified (modificado): Este estado es al que pasa un archivo que alteramos en algun aspecto, ya sea borrar, anadir o modificar una linea, estos cambios todavia no estas preparados para ser confirmados.
+- **Modified** (modificado): Este estado es al que pasa un archivo que alteramos en algún aspecto, ya sea borrar, añadir o modificar una línea, estos cambios todavía no están preparados para ser confirmados.
 
-- Staged (preparado): Cuando marcamos nuestros archivos con este estado le estamos diciendo a Git que estan preparados para ser confirmados. Estos se encuentra en un estado transitoria para luego ser confirmados.
+- **Staged** (preparado): Cuando marcamos nuestros archivos con este estado le estamos diciendo a Git que están preparados para ser confirmados. Estos se encuentran en un estado transitorio para luego ser confirmados.
 
-- Commited (confirmado): ESto quiere decir que nuestro archivo se encuntra confirmado y guardad en nuestro repositorio local. La accion de pasar de `stage` => `commited` se llama "commit".
+- **Committed** (confirmado): Esto quiere decir que nuestro archivo se encuentra confirmado y guardado en nuestro repositorio local. La acción de pasar de `stage` => `committed` se llama "commit".
 
 #### NO ENTIENDO, AYUDA 
-Es normal que esto te confunda, la mejor forma de entender los estados de los ficheros en Git es pensado
-en una sesion de fotografia. Con un panel, una camara y los objetos que queremos fotografiar.
+Es normal que esto te confunda, la mejor forma de entender los estados de los ficheros en Git es pensando en una sesión de fotografía. Con un panel, una cámara y los objetos que queremos fotografiar.
 
-- Al principio nuestro panel va a estar vacio ya que no tenemos nada nuevo a lo sque queramos fotografiar.
+- Al principio nuestro panel va a estar vacío ya que no tenemos nada nuevo a lo que queramos fotografiar.
 
-- Oh, uno de nuestros objetos cambio de color. Esto representa el estado de `Modified`.
+- Oh, uno de nuestros objetos cambió de color. Esto representa el estado de `Modified`.
 
-- Como nuestro objeto cambio, asi que lo preparamos y lo dejamos dentro de panel. Mover nuestro objeto y prepararlo representa al accion de `add` y el panel el estado `Stage`.
+- Como nuestro objeto cambió, así que lo preparamos y lo dejamos dentro del panel. Mover nuestro objeto y prepararlo representa la acción de `add` y el panel representa el estado `Staged`.
 
-- Al parecer mas objetos an estado cambiando, de modo que tambien los preparemos y los dejamos dentro del panel. Podemos preparar varios archivos al mismo tiempo, esto es porque algunos cambios tienen relacion directa con otros de modo que los podemos guardar juntos.
+- Al parecer más objetos han estado cambiando, de modo que también los preparamos y los dejamos dentro del panel. Podemos preparar varios archivos al mismo tiempo, esto es porque algunos cambios tienen relación directa con otros, de modo que los podemos guardar juntos.
 
-- Ahora con todos nuestros objetos listos para la fotografia procedemos a tomar la foto, de esta manera no nos olvidaremos de este momento. La accion de tomar la foto hace referencia a la accion `commit` ya que con esto guardamos nuestros cambios ademas de darles un nombre o asunto.
+- Ahora con todos nuestros objetos listos para la fotografía, procedemos a tomar la foto, de esta manera no nos olvidaremos de este momento. La acción de tomar la foto hace referencia a la acción `commit` ya que con esto guardamos nuestros cambios además de darles un nombre o asunto.
 
-- Ya tenemos nuestra foto!, ahora nunca olvidaremos este momento, procedemos a dejar nuestros obejtos en su lugar, fuera del panel. Esto representa el fin del ciclo de vida de los ficheros, de este modo despuse de hacer `commit` pasaran a estar sin modificar otrave, de modo que podemos repetir el ciclo.
+- ¡Ya tenemos nuestra foto! Ahora nunca olvidaremos este momento, procedemos a dejar nuestros objetos en su lugar, fuera del panel. Esto representa el fin del ciclo de vida de los ficheros, de este modo después de hacer `commit` pasarán a estar sin modificar otra vez, de modo que podemos repetir el ciclo.
 
-Espero que de esta manera ayas podido entender con mas claridad como funionan los estados de los archivos y las accioines que pueden modificar a estos.
+Espero que de esta manera hayas podido entender con más claridad cómo funcionan los estados de los archivos y las acciones que pueden modificarlos.
 
 ### Git y GitHub no son lo mismo
-Parece un poco ovbio pero todavia escucho personas penser eso, y no tiene nada de malo
-a simple vista cumplen la misma funcion.
+Parece un poco obvio pero todavía escucho personas pensar eso, y no tiene nada de malo
+a simple vista cumplen la misma función.
 
-- Git: Es un sistema de versionamiento y control, es decir nos ayuda a controlar nuestros cambios, este se ejecuta de manera local, de la misma manera almacena los repositorios en nuestra maquina.
-- GitHub: Es un servicio de hospedamiento remoto de nuestros repositorios, ofrecido actualmente por Microsoft, y no es el unico que nos ofrece tal cosa, por ejemplo tenemos a GitLab o BitBucket, los cuales nos ofrecen los mismo. En resumen GitHub solo almacenara nuestros repositorios en la nube estando asi listos para podeer usarlos desde cualquier parte o momento, ya se por nosotros o por un equipo de desarrollo.
+- Git: Es un sistema de versionamiento y control, es decir, nos ayuda a controlar nuestros cambios. Se ejecuta de manera local y almacena los repositorios en nuestra máquina.
 
-## Instalcion y configuracion
-Aqui se daran algunos pasos y recomendaciones para descargar y configurar git, mas no reemplaza leer la documentacion de su pagina oficial,
-ademas que solo veremos las formas de instalarlo en algunos sistemas operativos.
+- GitHub: Es un servicio de hospedaje remoto de nuestros repositorios, ofrecido actualmente por Microsoft, y no es el único que nos ofrece tal cosa. Por ejemplo, tenemos a GitLab o BitBucket, los cuales nos ofrecen lo mismo. En resumen, GitHub solo almacenará nuestros repositorios en la nube, estando así listos para poder usarlos desde cualquier parte o momento, ya sea por nosotros o por un equipo de desarrollo.
+
+## Instalación y configuración
+Aquí se darán algunos pasos y recomendaciones para descargar y configurar Git, pero no reemplaza leer la documentación de su página oficial. Además, solo veremos las formas de instalarlo en algunos sistemas operativos.
 
 ### Comprobando si ya tengo instalado Git
-Esto es muy facil solo es ejecutar el siguiente comando en la terminal. Una aclaracion,
-siempre que vean un signo de dolar anteponiendo al comando, quiere decir que ese comando se
-ejecuta en una terminal, no es nesesario y no se debe copiar directamente en esta.
+Esto es muy fácil, solo es ejecutar el siguiente comando en la terminal. Una aclaración: siempre que vean un signo de dólar anteponiendo al comando, quiere decir que ese comando se ejecuta en una terminal. No es necesario y no se debe copiar directamente en esta.
 
         $ git --version
 
@@ -89,24 +80,21 @@ Si tenemos instalado git nos saldra lo siguiente:
 
         git version 2.41.0
 
-Si al contrario el mensaje de vuelta es algo como `git: command not found` es porque aun no tenemos
-instaldo Git
+Si, por el contrario, el mensaje de vuelta es algo como `git: command not found`, es porque aún no tenemos instalado Git.
 
 ### Instalando Git
 - Ubuntu: Tan simple como ejecutar
 
         $ apt-get install git
 
-- Windows: Tambien simple, dirijete a la pagina oficil y descarga el instalador, sigues lo pasos y le das siguiente a todo.
+- Windows: También es simple, dirígete a la página oficial y descarga el instalador. Luego, sigue los pasos y dale "Siguiente" a todo.
 
 
 ### Configurando mi nombre y correo
-Al hacer cambios en el repositorio estamos modificando archivos que podrian ser muy importante
-ya se en el caso de estar trabanjo solo o en un equipo por esta razon tenemos que firmar
-con nuestro nombre y correo cada cambio que hacemos, de esta manera, los demas integrnates podran
-saber quien hizo que cosa y haci tener un mejor control.
 
-Ejecutamos los siguientes comandos cambiando la informacion con la correspondiente:
+Al hacer cambios en el repositorio, estamos modificando archivos que podrían ser muy importantes. Ya sea en el caso de estar trabajando solo o en un equipo, por esta razón, tenemos que firmar con nuestro nombre y correo cada cambio que hacemos. De esta manera, los demás integrantes podrán saber quién hizo qué cosa y así tener un mejor control.
+
+Ejecutamos los siguientes comandos, cambiando la información con la correspondiente:
 
         $ git config --global user.name "miNombreDeUsuario"
         $ git config --global user.email "miCorreo@example.com"
@@ -116,26 +104,23 @@ En mi caso seria de la siguiente manera:
         $ git config --global user.name "Diegoo11"
         $ git config --global user.email "ynoacamino@gmail.com"
 
-Explicacion: Con la bandera `--global` le estamos diciendo que queremos que esta configuracion
-se guarde y este disponible para todos nuestros repositorios, tambien podemos querer
-que solo se guarde en un repositorio en especifico, para ese caso nos dirijimos a la carpeta raiz de este
+Explicación: Con la bandera `--global` le estamos diciendo que queremos que esta configuración
+se guarde y esté disponible para todos nuestros repositorios, también podemos querer
+que solo se guarde en un repositorio en específico, para ese caso nos dirigimos a la carpeta raíz de este
 y ejecutamos.
 
         $ git config user.name "miOtroNombre"
 
-De esta manera se guardara solo en el repositorio especifico.
+De esta manera se guardará sólo en el repositorio específico.
 
-### Listar la configuracion
-Un comando muy util que uso siempre antes de abrir mi editor de codigo, es listar mi configuracion
-ya sea porque no estoy seguro cual sera mi rama por defecto o aun mas importante, saber
-con que correo estoy trabajando, ya que si uso un correo y nombre diferente del que tienen concimiento
-mi equipo de desarrollo causare confucion y es lo que menos queremos. <br>
+### Listar la configuración
+Un comando muy útil que uso siempre antes de abrir mi editor de código, es listar mi configuración ya sea porque no estoy seguro cual será mi rama por defecto o aún más importante, saber con que correo estoy trabajando, ya que si uso un correo y nombre diferente del que tienen conocimiento mi equipo de desarrollo causará confusión y es lo que menos queremos. 
+<br>
 Para esto usaremos el siguiente comando.
 
         $ git config --list
 
-Nos mostrara toda nuestra configuracion global, en caso de solo querer la configuracion local del repositorio
-podemos ejecutar el siguiente.
+Nos mostrará toda nuestra configuración global, en caso de solo querer la configuración local del repositorio podemos ejecutar el siguiente.
 
         $ git config --local --list
 
@@ -149,28 +134,26 @@ Los comandos listados acontinuacion tendran la siguiente forma
         Casos de uso.
         Opinion.
 
-### git init : Inicializar un remositorio
-Un dato curioso es que cuando ya iva por mas de la mitad del libro me di cuenta que no explique como inicializar un repositorio, mi error.
+### git init : Inicializar un repositorio
+Un dato curioso es que cuando ya iba por más de la mitad del libro me di cuenta que no explique cómo inicializar un repositorio, mi error.
+
+Para inicializar un nuevo repositorio basta con ejecutar `git init` en la carpeta donde queremos que sea el repositorio o sino decirle en donde queremos inicializarlo pasándole una ruta desde de `init`. Esto creará una carpeta `.git` en donde se guardaran todas nuestras versiones e información necesaria para esta, por defecto esta carpeta esta oculta y es mejor dejarla así ya que cualquier cambio podría dejar inutilizable el repositorio local
 
         $ git init
         $ git init <ubicacion del directorio>
 
-Para inicializar un nuevo repositorio basta con ejecutar `git init` en la carpeto donde queremos que sea el repositorip o sino decirle en donde queremos inicalizarlo pasandole una ruta desde de `init`. Esto creara una carpeta `.git` en donde se guardaran todas nuestras versiones e informacion nesesaria para esta, por defecto esta carpeta esta oculta y es mejor dejarla asi ya que cualquier cambio podria dejar inutilizable el repositorio local
 
 ### git restore : Eliminar los cambios hechos a un archivo
+Con el más mínimo cambio nuestro archivo pasará del estado `committed` a `modified` pero a veces modificamos un archivo por error y queremos volver a la última vez donde nuestro archivo estaba `committed`.<br>
+Para esto usamos `git restore <ruta del archivo>`, tenemos de tener mucho cuidado ya que
+de hacer accidentalmente podemos perder muchas horas de trabajo.
 
         $ git restore archivo.txt
         $ git restore archivo.txt archivo2.md
         $ git restore .
 
-Con el mas minimo cambio nuestro archivo pasara del estado `commited` a `modified` pero
-aveces modificamos un archivo por error y queremos volver a la ultima ves donde nuestro archivo
-estada `commited`.<br>
-Para esto usamos `git restore <ruta del archivo>`, tenemos de tener mucho cuidado ya que
-de hacer accidentamente podemos perder muchas horas de trabajo
 
-Tenemos que tener en cuenta que tanto `archivo.txt`,
-`archivo.txt archivo2.md` y `.` son rutas y eso es lo que acepta Git.
+Tenemos que tener en cuenta que tanto `archivo.txt`, `archivo.txt archivo2.md` y `.` son rutas ya que eso es lo que acepta la mayoría de comandos de Git.
 
 ### git add : Anadir archivos al area de `stage`
 
@@ -185,8 +168,7 @@ Git add sirve para pasar un archivo del estado `modified` al estado `staging`. <
 |   archivo.txt |   X           |               |
 |   archivo2.md |   X           |               |
 
-Despues de haber ejecutado los mandos nustros archivos que inicialmente tenian le estado
-de `modified` pasaron a estar en `staging`.
+Después de haber ejecutado los mandos nuestros archivos que inicialmente tenían el estado de `modified` pasaron a estar en `staging`.
 
 |   Archivos    |   Modified    |   Staging     |
 |---------------|---------------|---------------|
@@ -195,14 +177,14 @@ de `modified` pasaron a estar en `staging`.
 
 
 ### git reset : Sacar ficheros del area de `stage`
+Hay veces donde escribimos mal la ruta de un archivo y lo añadimos por error al área de `stage`. <br>
+No hay problema, lo sacaremos. Con el comando `git reset <ruta>` podemos sacar esos archivos
+que no queremos que estén en `stage`.
+
 
         $ git reset archivo.js
         $ git reset archivo.js README.md
         $ git reset .
-
-Hay veces donde escribimos mal la ruta de una archivo y lo anadimos por error al area de `stage`. <br>
-No hay problema, lo sacaremos. Con el comando `git reset <ruta>` podemos sacar esos archivos
-que no queremos que esten en `stage`.
 
 Estado inicial:
 
@@ -211,7 +193,7 @@ Estado inicial:
 |   archivo.js  |               |   x           |
 |   README.md   |               |   x           |
 
-Despues de: `git reset .`
+Después de: `git reset .`
 
 |   Archivos    |   Modified    |   Staging     |
 |---------------|---------------|---------------|
@@ -220,109 +202,100 @@ Despues de: `git reset .`
 
 
 ### git commit : Guardando con commit
+Si no leiste 'Los 3 estados de los archivos en Git' te recomiendo encarecidamente que le des una leída antes de continuar.<br> Hay varias formas de hacer commit, aquí te presento algunas.
 
         $ git commit                                (1)
         $ git commit -m "<mensaje>"                 (2)
         $ git commit -m "<mensaje>" <ruta>          (3)
 
+- **(1):** Guarda el commit de todos los archivos que esten en el area de `staging`, ademas habre un editor de texto para incluir el asunto del commit.
 
-Si no leiste 'Los 3 estados de los archivos en Git' te recomiendo encaresidamente que
-le des una leida antes de continuar.<br>
-Digamos que ya editamos nuestro archivo `App.js`, decidimos que terminamos de hacer los
-cambios correspondientes asi que ejecutamos
+- **(2):** Guarda el commit de todos los archivos que esten en el area de `staging`, mas no habre nigun editor ya que le pasamos el mensaje del commit como parametro.
+
+- **(3):** Cumple la misma funcion que **(2)** pero solo guarda un archivo en particular y los demas los ignora.
+
+Explicacion:<br>
+Digamos que ya editamos nuestro archivo `App.js`, decidimos que terminamos de hacer los cambios correspondientes así que ejecutamos.
 
         $ git add App.js
 
-De paso anadimos otros archivo que tambien estan listos
+De paso añadimos otros archivo que también están listos.
 
         $ git add README.md
         $ git add index.js
         $ git add package.json
 
-Ahora estamos listos para hacer nustro primer commit
+Ahora estamos listos para hacer nuestro primer commit.
 
         $ git commit -m "mi primer commit"
 
-De esta manera terminamos el ciclo de vida de los ficheros y pasan a estar otraves al
-estado `commited`
+De esta manera terminamos el ciclo de vida de los ficheros y pasan a estar otra vez al estado `committed`.
 
-                           edit                  add
-        -----> commited ----------> modified -----------> staged -----
-        |                                                            |
-        |                                                            |
-        |                                                            |
-        --------------------------------------------------------------
+                          edit                add
+        ----> commited ---------> modified ---------> staged ----
+        |                                                        |
+        |                                                        |
+        |                                                        |
+        ---------------------------------------------------------
                                     commit
 
-- **(1):** Guarda el commit de todos los archivos que esten en el area de `staging`, ademas habre un editor de texto para incluir el asunto del commit
 
-- **(2):** Guarda el commit de todos los archivos que esten en el area de `staging`, mas no habre nigun editor ya que le pasamos el mensaje del commit como parametro
 
-- **(3):** Cumple la misma funcion que **(2)** pero solo guarda un archivo en particular y los demas los ignora.
+### git reset : Quiero eliminar mi commit y devolver una versión anterior
+¿Qué ha pasado?, al parecer cometiste un error al subir el commit y quiere volver a un version
+anterior, no hay problema con `git reset` podemos lograrlo pero antes:
 
-### git reset : Quiero eliminar mi commit y devolver una version anterior
+- `git reset` puede ser muy peligroso ya que alteramos los commis osea los nodos de nuestra rama esto puede causar problemas tanto para nosotros como para nuestro equipo de desarrollo si no se hace con precaución.
+
+- Siempre podemos optar por volver a editar nuestro fichero y hacer otro comint solucionando los cambios, a veces esta es la mejor opción ya que no solo no alteramos el flujo de la rama sino dejamos constancia del error.
+
+Si aún así lo necesitas, adelante.
+
 
         $ git reset HEAD~1                          (1)
         $ git reset HEAD~i                          (2)
         $ git reset <hash>                          (3)
 
-Que ha pasado, al parecer cometiste un error al subir el commit y quiere volver a un version
-anterior, no hay problema con `git reset` podemos lograrlo pero antes:
-
-- `git reset` puede ser muy peligroso ya que alteramos los commis osea los nodos de nuestra rama esto puede cuasar problemas tanto para nosostros como para nuestro equipo de desarrollo si no se hace con precucion.
-
-- Siempre podemos optar por volver a editar nuestro fichero y hacer otro comint solucionando los cambios, aveces esta es la mejor opcion ya que no solo no alteramos el flujo de la rama sino dejamos constancia del error.
-
-Si aun asi lo necesitas adelante.
-
 - **(1):** Con `HEAD~1` le estamos diciendo que retroceda un commit anterior.
 
-- **(2):** En este `i` se debe cambiar por el numero de commits que queremos retroceder.
+- **(2):** En este `i` se debe cambiar por el número de commits que queremos retroceder.
 
-- **(3):** En caso de tener el hash del commit al cual nos queremos transladar podemos usarlo tambien.
+- **(3):** En caso de tener el hash del commit al cual nos queremos trasladar podemos usarlo también.
 
 ### git checkout : Viajar en el tiempo o entre commits
+Tal vez uno de los comando más interesantes en mi opinión y el que más recomiendo usar sobre comandos como `git reset` o `git rebase` ya que `checkout` no altera la rama en ningun sentido, solo nos permite viajar y transladarnos entre commits y así rebuscar entre el código que nos interesa.<br>
+Algo importante de aclarar es que cuando nos movemos entre commits con `checkout` HEAD se encuentra en un estado `separado` que no nos permite editar archivos pasados.
 
         $ git checkout HEAD~1
         $ git checkout HEAD~i
         $ git checkout <hash>
 
-Talves uno de los comando mas interesantes en mi opinion y el que mas recomiendo usar sobre comandos como
-`git reset` o `git rebase` ya que `checkout` no altera la rama en ningun sentido, solo nos permite
-viajar y transladarnos entre commits y asi rebuscar entre el codigo que nos interesa.<br>
-Algo importante de aclarar es que cuando nos movemos entre commits con `checkout` HEAD se cuentra
-en un estado `separado` que no nos permite editar archivos pasados.
-
-Que ya te aburriste de ver tu codigo de commits antiguos y quieres volver al commit mas reciente? Ejecuta este comando
+¿Ya te aburriste de ver tu código de commits antiguos y quieres volver al commit más reciente? Ejecuta este comando.
 
         $ git switch <nombre de la rama>
 
-### Introducciondo HEAD
-HEAD no es la cabeza de la rama, eso hay que tenerlo claro, podemos pensar en HEAD como un GPS para
-saber con precicion en que parte de la rama nos encontramos. <br>
-Explicacion con grafico para entender con facilidad.
+### Introduciendo HEAD
+HEAD no es la cabeza de la rama, eso hay que tenerlo claro, podemos pensar en HEAD como un GPS para saber con precisión en qué parte de la rama nos encontramos. <br>
+Explicación con gráfico para entender con facilidad.
 
         main | git init ----> A ----> B ----> C ----> D (HEAD)
 
-Podemos observar la rama `main` la cual inicia con git init, luego se hacen los siguientes commits,
-A, B, C, D; sinedo D el ultimo por lo tanto seria nuestro HEAD ya que es el ulitmo lugar donde nos encontramos. <br>
+Podemos observar la rama `main` la cual inicia con git init, luego se hacen los siguientes commits, A, B, C, D; siendo D el último por lo tanto sería nuestro HEAD ya que es el último lugar donde nos encontramos. <br>
 Pero ahora ejecutaremos `git checkout` para movernos entre commits.
 
         $ git checkout HEAD~2
 
-Y nuestro grafico quedaria de la siguiente manera.
+Y nuestro gráfico quedaría de la siguiente manera.
 
         main | git init ----> A ----> B (HEAD) ----> C ----> D
 
 Podemos observar como HEAD nos sigue y apunta al commit donde nos encontramos.
 
-Anteriormente vimos como deshacer un commit y para eso usamos el parametro `HEAD~1`, este parametro queria decir,
+Anteriormente vimos cómo deshacer un commit y para eso usamos el parámetro `HEAD~1`, este parámetro queria decir,
 **un commit anterior a HEAD** o en caso de `HEAD~i`, **retrocede 'i' veces en commits a partir de HEAD**.
 
 ### Ignorando ficheros
-Ya sea porque tenemos archivos innesesarios, claves privadas o carpetas con codigo de produccion tarde o temparno
-querremos ingonar algun fichero y de esta manera impedir que se muestre en el repositorio
-publico, esto se logra escribiendo el nombre del archivo en el archivo `.gitignore`.
+Ya sea porque tenemos archivos innecesarios, claves privadas o carpetas con codigo de produccion tarde o temprano queremos ignorar algún fichero y de esta manera impedir que se muestre en el repositorio público, esto se logra escribiendo el nombre del archivo en el archivo `.gitignore`.
 
         .env
         dist
@@ -331,51 +304,49 @@ publico, esto se logra escribiendo el nombre del archivo en el archivo `.gitigno
         app.test.js
         CLAVE_PRIVADA.js
 
-De esta manera le estamos diciendo a git que no haga seguimiento de esos archivos
+De esta manera le estamos diciendo a git que no haga seguimiento de esos archivos.
 
 ### git rm : Ignorar archivos que ya tienen seguimiento
-Hay veces que no nos damos cuenta o nos olvidamos a de colocar el nombre en `.gitignore`
-no pasa nada lo solucionaremos. <br>
-Primero simularemos el posible caso.
+Hay veces que no nos damos cuenta o nos olvidamos de colocar el nombre en `.gitignore` no pasa nada lo solucionaremos. <br> Primero simularemos el posible caso.
 
         $ nvim clave.js
         $ git add .
         $ git commit -m "init project"
 
-Ahora Git hara seguimiento de nuestra clave junto con todo el projecto, para solucionarlo
-ejecutamos el siguiente comando
+Ahora Git hará seguimiento de nuestra clave junto con todo el proyecto, para solucionarlo ejecutamos el siguiente comando.
 
         $ git rm --cached clave.js
 
-Este comando solo hara que `clave.js` se deje de rastrear, si ademas queremo borrarlo tenemos
-este otro comando.
+Este comando solo hará que `clave.js` se deje de rastrear, si además queremo borrarlo tenemos este otro comando.
 
         $ git rm clave.js
 
 
-### Que es una rama
-Antes dijimos que deberiamos pensar en los estamos de commit como una sesion fotographica, de la
-misma manera podemos pensar en una rama como un album de fotos.<br>
-Por defecto nuestra rama se llamara `main` y estara formada por el historial de nuestros commits
+### ¿Qué es una rama?
+Antes dijimos que deberíamos pensar en los estados de commit como una sesión fotográfica, de la misma manera podemos pensar en una rama como un álbum de fotos.<br>
+Por defecto nuestra rama se llamará `main` y estará formada por el historial de nuestros commits.
 
         main || git init <---- commit A <---- B <---- C (HEAD)
 
-Podemos ver nuestra unica rama `main` esta contiene nuestros commit, mas no es la unica rama
-que podemos tener podemos crear ramas a partir de otra en nuestro caso `main` pero esto lo veremos un
-poco mas adelante.
+Podemos ver nuestra única rama `main` esta contiene nuestros commit, mas no es la única rama que podemos tener podemos crear ramas a partir de otra en nuestro caso `main` pero esto lo veremos un poco más adelante.
 
 ### git branch : Creando ramas
+Para esto usaremos:
 
         $ git branch <nombre>                       (1)
         $ git switch -c <nombre>                    (2)
 
-En el siguiente ejemplo crearemos una rama con el nombre `newRama`.
+- **(1)** Crea la nueva rama pero no cambiamos a esta.
+- **(2)** Crea la nueva rama y cambia a esta automáticamente.
 
-Estado inicial(antes de crear la rama)
+Ejemplo:<br>
+En el siguiente ejemplo crearemos una rama con el nombre `newsRama`.
+
+Estado inicial(antes de crear la rama).
 
         main || git init <---- A <---- B (HEAD)
 
-Despues de crear la nueva rama a partir del commit 2, por lo que ejecutamos los siguiente
+Después de crear la nueva rama a partir del commit 2, por lo que ejecutamos lo siguiente.
 
         $ git branch newRama
 
@@ -384,12 +355,8 @@ Despues de crear la nueva rama a partir del commit 2, por lo que ejecutamos los 
                                          \
                                newRama || B (HEAD)
 
-Como podemos ver nuestra rama desiende del commit B por lo que se crea como una copia
-exacta de este. A partir de este punto cada rama es independiente una de otra, cada una
-puede continuar con commits que la agan crecer, eliminarse, o incluso fucionarse con otra
-rama en algun momento.<br>
-En el siguiente ejemplo cada rama seguira creicendo por su lado y la rama `main` se
-volvera a dividir(bifurcar).
+Como podemos ver nuestra rama desciende del commit B por lo que se crea como una copia exacta de este. A partir de este punto cada rama es independiente una de otra, cada una puede continuar con commits que la hagan crecer, eliminarse, o incluso fusionarse con otra rama en algún momento.<br>
+En el siguiente ejemplo cada rama seguirá creciendo por su lado y la rama `main` se volverá a dividir(bifurcar).
 
                                otraRama || D <---- H
                                           /
@@ -399,58 +366,43 @@ volvera a dividir(bifurcar).
                           \
                 newRama || B <---- F <---- G
 
-- **(1)** Crea la nueva rama pero no cambiamos a esta.
-- **(2)** Crea la nueva rama y cambia a esta automaticamente.
 
-### git switch : Comandos utiles para manejar ramas
+### git branch, git switch : Comandos útiles para manejar ramas
     
         $ git branch
 
-Muestra las ramas disponibles y la rama en la que nos encontramos, esta marcada con un asterisco.
+Muestra las ramas disponibles y la rama en la que nos encontramos, está marcada con un asterisco.
 
         $ git switch nombreDeLaRama
         $ git switch -
 
-Git switch sirve para cambiar entre ramas, pasandole como parametro el nombre de la rama, o si
-solo queremo movernos a la rama donde estabamos previamnete podemos usar el `-`
+Git switch sirve para cambiar entre ramas, pasandole como parametro el nombre de la rama, o si solo queremos movernos a la rama donde estábamos previamente podemos usar el `-`.
 
 ### git merge : Fusionando ramas
+Llegó el momento, la pesadilla de muchos 'Fusionar ramas', más no hay que asustarse aquí lo entenderás de una vez por todas y nunca más le tendras miedo.
 
         $ git merge nombreDeUnaRama
 
-Llego el momento, la pesadilla de muchos 'Fusionar ramas', mas no hay que asustarse
-aqui lo entenderas de una vez por todas y nunca mas le tendras miedo.
-
-Para esto vamos a imaginar que tenemos 3 commits, A, B, C, en C es que nos damos cuenta
-que queremos probar un nuevo framework o utilidad mas no queremos comprometer al projecto
-principal para esto creamos una rama llamada `experiment`.
+Para esto vamos a imaginar que tenemos 3 commits, A, B, C, en C es que nos damos cuenta que queremos probar un nuevo framework o utilidad mas no queremos comprometer al proyecto principal para esto creamos una rama llamada `experiment`.
 
         main || A <----- B <----- C
                                    \
                                     \
                        experiment || C
 
-Ya con nuestra rama creadad podemos continuar trabajando en el projecto principal y al
-mismo tiempo probar el nuevo framework, por lo que continuaremos haciendo commits
-a ambas ramas
+Ya con nuestra rama creada podemos continuar trabajando en el proyecto principal y al mismo tiempo probar el nuevo framework, por lo que continuaremos haciendo commits a ambas ramas.
 
         main || A <----- B <----- C <---- D <----- E
                                    \
                                     \
                        experiment || C <---- X <---- Y (HEAD)
 
-Todo a ido bien con las pruebas del nuevo framework y decides que es lo mejor para el
-projecto por lo que ahora quieres unir las ramas para tener tanto el nuevo framework
-como los cambios que fuiste avanzando mientras probabas este.
+Todo a ido bien con las pruebas del nuevo framework y decides que es lo mejor para el proyecto por lo que ahora quieres unir las ramas para tener tanto el nuevo framework como los cambios que fuiste avanzando mientras probabas este.
 
-Para esto debemos tener claro que queremos hacer, queremos que `main` contenga los cambios
-de `experiment` y dejar a `experiment` intacto? o quremos que experemente contenga los cambios de
-`main` y dejar a `main` intacto?
+Para esto debemos tener claro qué queremos hacer, queremos que `main` contenga los cambios de `experiment` y dejar a `experiment` intacto? o queremos que `experiment` contenga los cambios de `main` y dejar a `main` intacto?
 
-Normamnete es la primera opcion ya que `main` debe contener los cambios principales y
-`experiment` desaparecer despues de cumplir su funcion, probar una nueva funcionalidad. Por
-lo que tomada una decicion nos aseguramos que estamos en la rama donde queremos ver
-reflejados los cambios. Ejecutamos:
+Normalmente es la primera opción ya que `main` debe contener los cambios principales y `experiment` desaparecer después de cumplir su función, probar una nueva funcionalidad. Por lo que tomada una decisión nos aseguramos que estamos en la rama donde queremos ver reflejados los cambios. Ejecutamos:
+
 
         $ git switch main
 
@@ -460,11 +412,11 @@ reflejados los cambios. Ejecutamos:
                                     \
                        experiment || C <---- X <---- Y
 
-Ya habiendonos movido ejecutamos
+Ya habiéndonos movido ejecutamos
 
         $ git merge experiment
 
-Despues de ejecutar git merge nos quedaria del siguiente modo:
+Después de ejecutar git merge nos quedaría del siguiente modo:
 
         main || A <----- B <----- C <---- D <----- E <---- F
                                    \                     /
@@ -472,39 +424,38 @@ Despues de ejecutar git merge nos quedaria del siguiente modo:
                        experiment || C <----- X <----- Y
 
 ### git branch -d : Eliminando ramas
+Ya habiendo fusionado nuestras ramas con la principal probablemente querramos borrarla ya que ya no nos es de uso. Para esto usaremos un comando ya conocido pero con un parámetro nuevo, `-d` o `-D`.
 
         $ git branch -d <nombreDeRama>              (1)           
         $ git branch -D <nombreDeRama>              (2)
 
-Ya habiendo fusinado nuestras ramas con la principal probablemente querramos borrarla ya que ya no nos es de uso. Para esto usaremos un comando ya conocido pero con un parametro nuevo, `-d` o `-D`.
+- **(1):** Eliminar la rama seleccionada pero se asegura de haberle dado un uso primero, como hacer una pull request o un git merge, de otro modo no te dejará eliminarlo. Esto es muy útil para no tener accidentes y perder muchas horas de trabajo.
 
-- **(1):** Eliminar la rama selecionada pero se asegura de haberle dado un uso primero, como hacer una pull request o un git merge, de otro modo no te dejara eliminarlo. ESto es muy util para no tener accidentes y perder muchas horas de trabajo.
-
-- **(2):** Elimina las ramas sin ningun tipo de advertencia, aveces es lo que queremos ya que habra casos donde no le hallamos dado ningun uso a esta, por lo tanto debamos eliminarla sin mas
+- **(2):** Elimina las ramas sin ningún tipo de advertencia, a veces es lo que queremos ya que habrá casos donde no le hayamos dado ningún uso a esta, por lo tanto debemos eliminarla sin más
 
 ### git remote prune origin : Sincronizando ramas
+Pero qué pasa si llevamos varios días sin sincronizarnos a nuestro repositorio remoto y además hemos creado varias ramas que no llegaron a nada en el repositorio local, o en el caso que las ramas que descargamos inicialmente ya no se encuentran en el repositorio remoto sino que las eliminaron.<br>
 
         $ git remote prune main
         $ git remote prune <nombreDelRepositorioRemoto>
 
-Pero que pasa si llevamos varios dias sin sincronizarnos a nuestro repositorio remoto y ademas hemos creado varias ramas que no llegaron a nada en el remositorio local, o en el caso que las ramas que descargamos inicialmente ya no se encuentran en el repositorio remoto sino que las eliminaron.<br>
-Para sincronizar nuestras usamos `git remote prune origin`, ahhh no entiendo la sintaxis, me imagino que estaras diciendo algo asi pero esta bien que no entiendas ya que aun no vemos git desde la parte de repositorios remotos, aun asi me gustaria explicartelo de modo que cuando lleves a esa parte puedas regresar y entender con mas claridad. <br>
+Para sincronizar nuestras usamos `git remote prune origin`, "ahhh no entiendo la sintaxis", me imagino que estarás diciendo algo así pero está bien que no entiendas ya que aun no vemos git desde la parte de repositorios remotos, aun así me gustaría explicárselo de modo que cuando lleves a esa parte puedas regresar y entender con más claridad. <br>
 
-- `git remote` con esto le decimos a Git que nos referimos a uno de los repositorios remotos (si, podemos tener mas de uno)
-- `prune` es la accion a realizar, en este caso elimnar ramas, "prune" traducido al espanol significa "podar"
-- `origin` con esto nos referimos al nombre del repositorio remoto, ya que podemos tener varios debemos darles un nombre para referenciar a uno, por defecto se le asigna origin por lo que la mayoria de veces usaremos este
+- `git remote` con esto le decimos a Git que nos referimos a uno de los repositorios remotos (si, podemos tener más de uno).
+- `prune` es la acción a realizar, en este caso eliminar ramas, "prune" traducido al español significa "podar".
+- `origin` con esto nos referimos al nombre del repositorio remoto, ya que podemos tener varios debemos darles un nombre para referenciar a uno, por defecto se le asigna origin por lo que la mayoría de veces usaremos este.
 
 ### Trabajando con repositorios remotos
-Ahora que sabes como controlar tu flujo de trabajo ya te encuentras listo para conpartir tu codigo con el mundo, espero mucho de ti. Talvez no estas convencido de subir tus repositorios a paginas como GitHub o GitLab ya que piensa que no es nesesario y hasta pesado, no temas yo te hare cambiar de opinion.
+Ahora que sabes cómo controlar tu flujo de trabajo ya te encuentras listo para compartir tu código con el mundo, espero mucho de ti. Tal vez no estás convencido de subir tus repositorios a paginas como GitHub o GitLab ya que piensa que no es necesario y hasta pesado, no temas yo te haré cambiar de opinión.
 
-#### Porque hacer mi codigo publico? Que gano yo?
-- Colaboracion: Al subir tu codigo a un repositorio publico tienes la oportunidad de trabajar con mas personas en un solo proyecto, retroalimentarse unos a otros y mejorar juntos.
+#### ¿Por qué hacer mi código público? ¿Qué gano yo?
+- Colaboración: Al subir tu código a un repositorio público tienes la oportunidad de trabajar con más personas en un solo proyecto, retroalimentarse unos a otros y mejorar juntos.
 
-- Llevar un portafolio: Se que pensaras que aunque subas lo que desarrollas nadie querra ver tu trabajo, pero no es cierto cuando llegue el momento de buscar una oportunidad o demostrar tus habilidades te servira tener tus trabajos listos y publicos desde que comenzaste a programar hasta tus proyectos mas recientes e impresionantes. Todo cuenta!
+- Llevar un portafolio: Se que pensaras que aunque subas lo que desarrollas nadie querrá ver tu trabajo, pero no es cierto cuando llegue el momento de buscar una oportunidad o demostrar tus habilidades te servirá tener tus trabajos listos y públicos desde que comenzaste a programar hasta tus proyectos más recientes e impresionantes. ¡Todo cuenta!
 
-- Codigo abierto: Por que contribuir al codigo abierto? Pues nos ayuda a trbajar colaborativamente con otros desarrolladores y resivir feedback sobre nuestro codigo, es un ganar ganar. Aun no estas convencido? Pues quiero recordarte que muchas de las herramientas que usamos dia a dia se las debemos al codigo abierto, sin irnos muy lejos esta la plataforma virtual de la UNSA, asi es, "Moodle" es de codigo abierto y como todos los proyectos de codigo abierto es mantenido por desarrolladores que aportan su grano de arena para contruir tecnologias increibles. 
+- Código abierto: ¿Por qué contribuir al código abierto? Pues nos ayuda a trabajar colaborativamente con otros desarrolladores y recibir feedback sobre nuestro código, es un ganar ganar. Aún no estás convencido? Pues quiero recordarte que muchas de las herramientas que usamos día a día se las debemos al código abierto, sin irnos muy lejos está la plataforma virtual de la UNSA, así es, "Moodle" es de código abierto y como todos los proyectos de código abierto es mantenido por desarrolladores que aportan su grano de arena para construir tecnologías increíbles.
 
-- Mejoramiento personal: Si subimos un repositorio a GitHub, a menos que este en privado, todos podran ver tu codigo y jusgarlo y aunque suene feo es lo mejor. Recordemos que el desarrollador ya no escribe codigo para si mismo sino que escribe para todo su equipo de desarrollo actual y el que lo reemplazara cuando este se valla, esto quiere decir que tenemos que estar en constante mejoramiento de nustras practicas y una forma de lograrlo es haciendo nuestro codigo libre a miradas. Almenos yo cuando se esto entiendo que debo esforzarme mas y seguir las buenas practicas, mejorando constantemente.
+- Mejoramiento personal: Si subimos un repositorio a GitHub, a menos que esté en privado, todos podrán ver tu código y juzgarlo y aunque suene feo es lo mejor. Recordemos que el desarrollador ya no escribe código para sí mismo sino que escribe para todo su equipo de desarrollo actual y el que lo reemplazará cuando este se vaya, esto quiere decir que tenemos que estar en constante mejoramiento de nuestras prácticas y una forma de lograrlo es haciendo nuestro código libre a miradas. Al menos yo cuando se esto entiendo que debo esforzarme más y seguir las buenas prácticas, mejorando constantemente.
 
 ### Iniciando un repositorio en GitHub
 
@@ -528,18 +479,18 @@ Por ejemplo:
 
 #### Subir de local a remoto
 
-        $ git remote add <nombre> <direccion del nuevo repositorio>
+        $ git remote add <nombre> <dirección del nuevo repositorio>
 
 Ejemplo:
         
         $ git remote add origin git@github.com:Diegoo11/miniBook-aboutGit.git
 
-Te acuerdas que anteriormente ya vino `remote`, llego el momento de entenderlo a la perfeccion
+Te acuerdas que anteriormente ya vimos `remote`, llegó el momento de entenderlo a la perfección
 
-1. `remote`: le desimoq que queremos acceder a la configuracion de los repositorios remotos
-2. `add`: en este caso queremos anadir una nueva direccion a nuestro repositorio
-3. `<nombre>`: Hay que aclarar que podemos tener mas de un repositorio remoto enlazado al mismo en local, entonces la forma de diferenciar uno de otro es darle un nombre, este por defecto es `origin` pero tambien podemos darle cualquier nombre
-4. `<direccion>`: Aqui copiamos la direccion ssh de un repositorio remoto, de preferecia que este vacio ya que asi no tendremos problemas al subir los archivos por primera vez, por el contrario si ya contiene ficheros y estos llevan los mismos nombre podriamos estar en problemas ya que habra conflictos.
+1. `remote`: le decimos que queremos acceder a la configuración de los repositorios remotos
+2. `add`: en este caso queremos añadir una nueva dirección a nuestro repositorio
+3. `<nombre>`: Hay que aclarar que podemos tener más de un repositorio remoto enlazado al mismo en local, entonces la forma de diferenciar uno del otro es darle un nombre, este por defecto es `origin` pero también podemos darle cualquier nombre
+4. `<dirección>`: Aquí copiamos la dirección ssh de un repositorio remoto, de preferencia que esté vacío ya que así no tendremos problemas al subir los archivos por primera vez, por el contrario si ya contiene ficheros y estos llevan los mismos nombre podríamos estar en problemas ya que habrá conflictos.
 
 #### Eliminar en enlace entre local y remoto
 
@@ -554,17 +505,7 @@ Te acuerdas que anteriormente ya vino `remote`, llego el momento de entenderlo a
         $ git remote rename <nombreActual> <nuevoNombre>
 
 ### git push : Subir commits a remoto
-
-        $ git push                                  (1)
-        $ git push <remoto> <rama>                  (2)
-
-**(1):** Aclaracion, cuando no se envia ningun parametro despues de `push` git asumira lo siguiente, `git push origin <ramaActual>`, por lo que siempre seria mejor completar los otros parametros en especial si tenemos varias ramas, ya que nos permitira tener conciencia de en donde queremos hacer el push
-**(2):** Ejemplo:
-
-        $ git push origin main
-
-La palabra `push` traducida al espanol seria "empujar", y tiene todo el sentido porque queremos subir nuestros cambios a remoto
-empujandolos desde el local, empujamos lo commits que aun no estan subidos a remoto
+La palabra `push` traducida al español sería "empujar", y tiene todo el sentido porque queremos subir nuestros cambios a remoto empujandolos desde el local, empujamos lo commits que aún no están subidos a remoto.
 
 
         A ----> B ----> C ----> D ----> E ----> F
@@ -572,85 +513,60 @@ empujandolos desde el local, empujamos lo commits que aun no estan subidos a rem
                         |                       |
                     git push (1)            git push (2)
 
-En el psuh (1) subimos los commits A, B, C; posteriormente seguimos trabanjando y volvemos
-a hacer git push (2) en este caso subiremos los commits C, E y F ya que git sabes que commit ya estan subidos en remoto y solo sube lo que son nuevos
+En el push (1) subimos los commits A, B, C; posteriormente seguimos trabajando y volvemos a hacer git push (2) en este caso subiremos los commits C, E y F ya que git sabes que commit ya están subidos en remoto y solo sube lo que son nuevos.
+
+        $ git push                                  (1)
+        $ git push <remoto> <rama>                  (2)
+
+- **(1):** Aclaración, cuando no se envia ningun parametro después de `push` git asumirá lo siguiente, `git push origin <ramaActual>`, por lo que siempre sería mejor completar los otros parámetros en especial si tenemos varias ramas, ya que nos permitirá tener conciencia de en donde queremos hacer el push.
+
+- **(2):** Ejemplo:
+
+        $ git push origin main
 
 
 ### git pull : Sincronizar con remoto
+Antes solo nos preocupamos por nuestros cambios pero ahora trabajamos con repositorios remoto y esto incluye que podemos tener cambios que nosotros no hicimos, sino que los hizo nuestro equipo de desarrollo, estos cambios no se sincronizan automáticamente con nuestro repositorio local para esto ejecutamos `git pull`. Con esto le estamos diciendo que sincronice los cambios con el remoto.
 
         $ git pull
         $ git pull <remoto> <rama>
-
-Antes solo nos preocupabamos por nuestros cambios pero ahora trabajamos con repostirios remoto
-y esto incluye que podemos tener cambios que nosotros no hicimos, sino que los hizo nuestro equipo de
-desarrollo, estos cambios no se sincronnizan automaticamente con nuestro repositroio local para esto
-ejcutamos `git pull`. Con esto le estamos diciendo que sincronize los cambios con el remoto.
 
 ### git fetch : Trae los cambios mas no altera tu espacio de trabajo
 
         $ git fetch
         $ git fetch <remoto> <rama>
 
-Pero que pasa si estamos trabajando en algo importante en local pero en remoto borraron o sobrescribieron nuestro codigo,
-al hacer pull perderiamos nuestro avanze y horas de trabajo, para esto existe git fetch.
-Trae los cambios mas no los fusiona automaticamente sino que nosotros tenemos que hacerlo, pero primero
-podemos ver que cambios hay y a que parte de nuestro proyecto compromete. A continuacion dejo comandos utiles
-que nos ayudaran con este proposito:
+Pero qué pasa si estamos trabajando en algo importante en local pero en remoto borraron o sobrescribiendo nuestro código, al hacer pull perderíamos nuestro avance y horas de trabajo, para esto existe git fetch. Trae los cambios mas no los fusiona automáticamente sino que nosotros tenemos que hacerlo, pero primero podemos ver que cambios hay y a que parte de nuestro proyecto se compromete. A continuación dejo comandos útiles que nos ayudaran con este propósito:
 
         $ git log origin/main
 
-Con este podemos ver que commits no estan en nuestro repositorio y q archivos modifican pero nada mas.
+Con este podemos ver que commits no están en nuestro repositorio y archivos modifican pero nada más.
 
         $ git diff origin/main
 
-Este comando nos proporsionara cierta informacion aunque un poco confusa sobre los cambios en cada arhivo,
-si bien puede ser util en ciertos casos, lo nomral es que se torne turbio cuando hay muchos cambios a diferentes archivos
+Este comando nos proporciona cierta información aunque un poco confusa sobre los cambios en cada archivo, si bien puede ser útil en ciertos casos, lo normal es que se torne turbio cuando hay muchos cambios a diferentes archivos.
 
         $ git difftools origin/main
 
-Antes de ejecutar este comando debemos tener configurado una herramienta para este, normalmente yo uso
-vim o neoVim para esta tarea ya que son las mas faciles de configurar. Si quires que te explique como hacerlo, al final
-del libro tendre una seccion para eso.
-Este comando es muy util ya que habre una interfas grafica para mostrarnos el repositorio actual a la izquierda y el modificado con los nuevos commits
-a la derecha, de esta manera comparar con mayor presicion y tomar una mejor decicion
+Antes de ejecutar este comando debemos tener configurada una herramienta para este, normalmente yo uso vim o neoVim para esta tarea ya que son las más fáciles de configurar. Si quieres que te explique como hacerlo, al final del libro tendrás una sección para eso. Este comando es muy útil ya que abre una interfaz gráfica para mostrarnos el repositorio actual a la izquierda y el modificado con los nuevos commits a la derecha, de esta manera comparar con mayor precisión y tomar una mejor decisión.
 
 
 ## Conceptos utiles
 ### Que es fork
-Fork cuando hablamos de git es la accion de copiar el codigo de alguien es mas, esta copia puede recibir
-cambios que talvez no han sido aprobadas por el dueno del repositorio original mas como es
-un fork ya no pertenece a este, mas siempre esta copia apuntara a su repositorio original
+Fork cuando hablamos de git es la acción de copiar el codigo de alguien es más, esta copia puede recibir cambios que talvez no han sido aprobadas por el dueno del repositorio original mas como es un fork ya no pertenece a este, más siempre esta copia apunta a su repositorio original
 
-Debemos entender esto como una copia del codigo orignal que cambia para ser mejor
-sin afectar al proyecto original.
-Cuando haces un fork de un repositorio publico, este sera tuyo y podras modificarlo a tu gusto
+Debemos entender esto como una copia del código original que cambia para ser mejor sin afectar al proyecto original. Cuando haces un fork de un repositorio público, éste será tuyo y podrás modificarlo a tu gusto
 
 ### Como hacer un fork
-En este caso usaremos github para hacer nuestro primer fork, no dirigimos al repositorio
-al que queremos hacer fork y buscamos en la parte superiro derecha el boton `fork`,
-haciendo click a este crearemos nuestro fork y se almacnara junto a nuestros otros
-repositorios. Muy facil.
+En este caso usaremos github para hacer nuestro primer fork, no dirigimos al repositorio al que queremos hacer fork y buscamos en la parte superior derecha el botón `fork`, haciendo click a este crearemos nuestro fork y se almacenará junto a nuestros otros repositorios. Muy fácil.
 
 ### Aportando con Pull request
-Imaginemos el siguiente caso: "Encontramos un proyecto de codigo abierto en github
-, nos parece muy interesandte y prometedor pero tiene un error que provaca
-su cierre inmediato, como piensas que vale la pena ayudar a su desarrollo haces un
-fork al proyecto y editas su codigo desde el fork que creaste de esta manera solucionas
-el error que provocaba el cierre inmediato, pero... ahora como le haces llegar al
-creador la solucion a su error?". Aqui entran las pull request.<br>
-Una pull request es una solicitud de cambio o edicion de codigo, son muy utiles para
-colaborar con personas ajenas al proyecto pero que tienen la intencion de ayudar al
-desarrollo de este.
+Imaginemos el siguiente caso: "Encontramos un proyecto de código abierto en github, nos parece muy interesante y prometedor pero tiene un error que provoca su cierre inmediato, como piensas que vale la pena ayudar a su desarrollo haces un fork al proyecto y editar su código desde el fork que creaste de esta manera solucionar el error que provocaba el cierre inmediato, pero... ahora como le haces llegar al creador la solución a su error?". Aquí entran las pull request.<br>
+Una pull request es una solicitud de cambio o edición de código, son muy útiles para colaborar con personas ajenas al proyecto pero que tienen la intención de ayudar al desarrollo de este.
 
-Volviendo al ejemplo anterior: "Teniendo conocimiento sobre una pull request hacemos una
-con nuestros cambios a al proyecto principal. Con esto el dueno del proyecto sera
-avisado y podra revisar nuestra sugerencia de cambios, y la breve descripcion que le
-proporsionamos junto a la pull request"
+Volviendo al ejemplo anterior: "Teniendo conocimiento sobre una pull request hacemos una con nuestros cambios al proyecto principal. Con esto el dueño del proyecto será avisado y podrá revisar nuestra sugerencia de cambios, y la breve descripción que le proporcionamos junto a la pull request"
 
-Podemos hacer pull request de cualquier tipo de cambio, desde cualquier rama a otra, claro
-si los cambios que desarrollarmos tienen conflico este se tiene que soluconar antes de aceptar
-continuar la pull request. Ademas no es seguro que sea aceptada ya que la decicion final
-la tiene el dueno original o su equipo de trabajo.
+Podemos hacer pull request de cualquier tipo de cambio, desde cualquier rama a otra, claro si los cambios que desarrollamos tienen conflicto este se tiene que solucionar antes de aceptar continuar la pull request. Además no es seguro que sea aceptada ya que la decisión final la tiene el dueño original o su equipo de trabajo.
 
 ### Sincronizar y poner al dia mi fork
 
@@ -660,42 +576,37 @@ Ejemplo:
         
         $ git remote add upstream git@github.com:Diegoo11/miniBook-aboutGit.git
 
-Te preguntaste para que nos sirviria tener vinculado dos repositorios remotos a un solo repositorio
-local? Pues aqui esta la razon ya que asi podemos hacer `git pull upstream main` y traer todos
-los cambios del repositorio orignal a nuestro fork y no quedarnos desatualizados
+Te preguntaste para qué nos servirá tener vinculados dos repositorios remotos a un solo repositorio local? Pues aqui esta la razón ya que así podemos hacer `git pull upstream main` y traer todos los cambios del repositorio original a nuestro fork y no quedarnos desactualizados.
 
 ## Flujos de trabajo en Git
-En esta seccion dare introduccion a las maneras mas eficientes de trabajar en grupo
-usando git mas no se debe tomar como reglas estrictas ya que cada equipo es diferente y tiene
-habilidades y nesesidades distintas, estas estrategias se deben tomar como ayuda para
-encontrar la mejor manera de trabaja en conjunto.
+En esta sección daré introducción a las maneras más eficientes de trabajar en grupo usando git mas no se debe tomar como reglas estrictas ya que cada equipo es diferente y tiene habilidades y necesidades distintas, estas estrategias se deben tomar como ayuda para encontrar la mejor manera de trabajar en conjunto.
 
-**Importate: Esta parte estaba planeado pero me percate**
-1. NO tengo la experiencia nesesaria para hablar sobre este tema y cumplir con el proposito del libro, si bien se la teoria no tuve la oportunidad de ponerla en practica 
-2. Esto no significa que nunca continuare con esta seccion, solo la pospondre para en algun momento culminarla de la mejor manera posible
+**Importante: Esta parte estaba planeado pero me percate**
+1. NO tengo la experiencia necesaria para hablar sobre este tema y cumplir con el propósito del libro, si bien se la teoría no tuve la oportunidad de ponerla en práctica
+2. Esto no significa que nunca continuaré con esta sección, solo la pospondre para en algún momento culminarla de la mejor manera posible.
 
 ## Buenas practicas
-### Cada cuanto se debe hacer un commit?
-Es una pregunta que hasta hoy me cuesta decidirme por una respuesta, podemos pensar en que cada cambio por lo mas minusculo que paresca merece un commit y no estarimos mal ya que ese cambio puede significar un cambio en toda la estructura y su funcionamiento o solo la remocion de un comentario obsoleto. Entonces como sabesmos cada cuanto hacer un commit? <br>
-Desde mi punto de vista hay ciertos criterios sa seguir:
-- Cada ves que sentimos que damos un pato adelante para llegar a la meta. Esto quiere decir que no debemos hacer commit por gusto ya que te confunde a ti como a tu equipo, commits como 'test', '.', '...', 'nada nuevo'
-- Agrupa commits. Me costo mucho entender este punto, yo era quien si veia que en un archivo hago lo mismo que en otro en lugar de hacer un commit de los dos archivos al mismo tiempo hacia un commit para cada uno. Por que? Porque me gustaba ver en mi barra de `contributions in the last year` muchos numeros. Ahora entiendo que esto es muy malo ya que volvemos a los mismo que el anterior punto "commits sin sentido", siempre que puedas intenta agrupar los archivos que tienen que ver con el mismo commit
+### ¿Cada cuánto se debe hacer un commit?
+Es una pregunta que hasta hoy me cuesta decidirme por una respuesta, podemos pensar en que cada cambio por lo más minúsculo que parezca merece un commit y no estaríamos mal ya que ese cambio puede significar un cambio en toda la estructura y su funcionamiento o solo la remoción de un comentario obsoleto. Entonces cómo sabemos cuándo hacer un commit? <br>
+Desde mi punto de vista hay ciertos criterios a seguir:
+- Cada vez que sentimos que damos un paso adelante para llegar a la meta. Esto quiere decir que no debemos hacer commit por gusto ya que te confunde a ti como a tu equipo, commits como 'test', '.', '...', 'nada nuevo'.
+- Agrupa commits. Me costó mucho entender este punto, yo era quien si veía que en un archivo hago lo mismo que en otro en lugar de hacer un commit de los dos archivos al mismo tiempo hacia un commit para cada uno. ¿Por qué? Porque me gustaba ver en mi barra de `contributions in the last year` muchos números. Ahora entiendo que esto es muy malo ya que volvemos a los mismo que el anterior punto "commits sin sentido", siempre que puedas intenta agrupar los archivos que tienen que ver con el mismo commit.
 
-### Como nombrar a mis commits
-Esta parte es importante para trabajar de manera comoda con tu equipo, definir si los nombres de los commits estaran ingles o espanol, si usaran etiquetas o no, que tipo de commits usaran, etc. Primero se vera cual es la manera correcta o la mas aceptada de ponerle nombre a los commits en ingles.
+### Cómo nombrar a mis commits
+Esta parte es importante para trabajar de manera cómoda con tu equipo, definir si los nombres de los commits estarán inglés o español, si usaran etiquetas o no, que tipo de commits usaran, etc. Primero se verá cuál es la manera correcta o la más aceptada de ponerle nombre a los commits en inglés.
 
 - Usar la manera imperativa: <br>
-Normalmente cuando nombramos commits usamos verbos en pasado como `added`, `fixed`, `removed`, etc. Pero no es correcto ya que no estamos diciendo que la accion ya a pasado anteriormente y recien la estamos infomando, sino queremos decir lo contrario, la accion sucedio en ese commit. Esto lo logramos escribiendo de manera imperativa
+Normalmente cuando nombramos commits usamos verbos en pasado cómo `added`, `fixed`, `removed`, etc. Pero no es correcto ya que no estamos diciendo que la acción ya ha pasado anteriormente y recién la estamos informando, si no queremos decir lo contrario, la acción sucedió en ese commit. Esto lo logramos escribiendo de manera imperativa
 
         new file added                  ❌
 
         add new file                    ✅
 
-- No usar punto final ni puntos supencivos: <br>
-Usar punto final es totalmente innesesario, por otro lado los puntos suspencivos o "etc" da espacio a ambiguedad e inseguridad sobre lo que hace exactamente el commit.
+- No usar punto final ni puntos suspensivos: <br>
+Usar punto final es totalmente innecesario, por otro lado los puntos suspensivos o "etc" da espacio a ambigüedad e inseguridad sobre lo que hace exactamente el commit.
 
 - Usar etiquetas: <br>
-Cuando trabajamos en un proyecto bastante grande o monorepositorios donde en un solo repositorio tenemos varios proyecto es util usar etiquetas antes de los commit para anadir mas significado a estos, a este tipo de commit se le llama commits semanticos y se escriben de la siguiente manera: 
+Cuando trabajamos en un proyecto bastante grande o monorepositorios donde en un solo repositorio tenemos varios proyecto es útil usar etiquetas antes de los commit para añadir más significado a estos, a este tipo de commit se le llama commits semánticos y se escriben de la siguiente manera:
 
         <tipo> [alcance]: "descripcion"
 
@@ -707,65 +618,60 @@ En tipo podemos rellenar con los siguientes prefijos:
 - build: para cambios en el sistema de build, tareas de despliegue o instalación.
 - ci: para cambios en la integración continua.
 - docs: para cambios en la documentación.
-- refactor: para refactorización del código como cambios de nombre de variableso funciones.
+- refactor: para refactorización del código como cambios de nombre de variables o funciones.
 - style: para cambios de formato, tabulaciones, espacios o puntos y coma, etc; no afectan al usuario.
 - test: para tests o refactorización de uno ya existente.
 
-Y en alcance rellenamos con la parte a la que afecta este cambio, puede ser como: data base, web, backEnd, o algun framework en particular
-
+Y en alcance rellenamos con la parte a la que afecta este cambio, puede ser como: database, web, backEnd, o algún framework en particular
 
 ### Poner un buen nombre a tus ramas
-Normalmnete la razon de usar ramas es la de tener un orden y no chocar con otros
-trabajos de tu equipo, por esto es nesesario poder darles un buen nombre que nos
-diga sin tener que revisar todos lo commits, su proposito. Aca te dejo algunas pautas
+Normalmente la razón de usar ramas es la de tener un orden y no chocar con otros
+trabajos de tu equipo, por esto es necesario poder darles un buen nombre que nos
+diga sin tener que revisar todos lo commits, su propósito. Aca te dejo algunas pautas
 
 - Tener regularidad: Si usamos un estilo por defecto no podemos cambiarlo o usarlo solo en ciertas ramas o inadecuadamente, tenemos que seguirlo en todo el proyecto
 
-- Usar prefijos: Para mostrar mas informacion a simple vista podemos usar prefijos para senalar el prposito de la rama como:
+- Usar prefijos: Para mostrar mas informacion a simple vista podemos usar prefijos para señalar el propósito de la rama como:
 
     - bug: Para solucionar un bug conocido
-    - feature: Agregar una nueva caracteristica
-    - experiment: Experimentos con el codigo que nunca llegaran a produccion
-    - hotfix: Solucionar pequenos errores para la version final
+    - feature: Agregar una nueva característica
+    - experiment: Experimentos con el código que nunca llegarán a producción
+    - hotfix: Solucionar pequeños errores para la versión final
 
 ## Que es el stash
-No te ah pasado que estas escribiendo codigo pero te das cuenta de un error en otros archivos muy distintos?<br>
-Tienes dos opciones, borras tu trabajo actual y vas a solucionar el otro problma, o envias un commmit incompleto y vas a solucionar el otro problmea
-esto debido a que no podemos cambiar de ramas, hacer commit sin antes tener todo guardado correctamente.<br>
-Cual escojes? Yo escojo la tercera opcion, el `stash`, alameceno mis cambios en el stash entonces cambio entre ramas y soluciono el problema
-luego vuelvo y recupero mis cambios previos del stash. Muy facil verdad?
+¿No te ha pasado que estás escribiendo código pero te das cuenta de un error en otros archivos muy distintos?<br>
+Tienes dos opciones, borras tu trabajo actual y vas a solucionar el otro problema, o envías un commmit incompleto y vas a solucionar el otro problema, esto debido a que no podemos cambiar de ramas, hacer commit sin antes tener todo guardado correctamente.<br>
+¿Cuál escoges? Yo escojo la tercera opción, el `stash`, almaceno mis cambios en el stash entonces cambio entre ramas y soluciono el problema
+luego vuelvo y recupero mis cambios previos del stash. Muy fácil ¿verdad?
 
-- Comando utiles con stash:<br>
-Como almacenar los cambios en el stash
+- Comando útiles con stash:<br>
+Como almacenar los cambios en el stash.
 
         $ git stash
         $ git stash push
 
-Ten cuidado con los archivos recien creados y que aun no tienen un commit previo, pues al intentar
-almacenarlos en el stash estos se borraran, para evitar eso usamos:
+Ten cuidado con los archivos recién creados y que aún no tienen un commit previo, pues al intentar almacenarlos en el stash estos se borraran, para evitar eso usamos:
 
         $ git stash push -u
 
-- Listar los stash:<br>Este comando es muy util ya que el stash tiene forma de pila, ultimo en entrar primero en salir, nuestras cambios se almacenan con un hash(incomprensible para nosotros), para poder direfernciar entre cambios ademas del hash tenemos un indice y de este nos apoyaremos para indicar y especificar un cambio en especifico
+- Listar los stash:<br>Este comando es muy útil ya que el stash tiene forma de pila, último en entrar primero en salir, nuestras cambios se almacenan con un hash(incomprensible para nosotros), para poder diferenciar entre cambios además del hash tenemos un índice y de este nos apoyaremos para indicar y especificar un cambio en especifico.
 
         $ git stash list
 
-- Recuperar el ultimo stash:<br>
-Con pop recuperamos el ultimo stash y por su natulareza(una pila) recupearmos el que este mas arriba
-de la pila, al mismo tiempo que lo eliminamos
+- Recuperar el último stash:<br>
+Con pop recuperamos el último stash y por su naturaleza(una pila) recuperamos el que esté más arriba de la pila, al mismo tiempo que lo eliminamos
 
         $ git stash pop
 
-En caso que no lo queramos elimnar y solo recuperar podemos usar
+En caso que no lo queramos eliminar y solo recuperar podemos usar
 
         $ git stash apply
 
 
 - Crear una rama apartir de un stash:<br>
-Hay veces donde los cambios son bastante grandes y no hay razon para no almacenarlos en una rama
-aparte, aqui podemos usar
+Hay veces donde los cambios son bastante grandes y no hay razón para no almacenarlos en una rama aparte, aquí podemos usar
 
         $ git stash branch <nombreDeRama> <i>
 
-Donde `i` es el indice del stash desde el cual queremos nuestra rama
+Donde `i` es el índice del stash desde el cual queremos nuestra rama
 
