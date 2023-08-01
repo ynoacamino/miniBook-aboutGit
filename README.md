@@ -1,6 +1,27 @@
 # miniBook-AboutGit
-Transladando mi poco conocimiento sobre git a un mini libro, el cual espero que ayude a
-muchos compañeros
+Transladando mi poco conocimiento sobre git a un mini libro, el cual espero que ayude a muchos compañeros
+
+## Prologo
+La idea de hacer un libro surgió de imprevisto, no estaba planeado y comenzó como una broma, “¿Y si hago un libro de Git? Jajajaja”, pero en mi cabeza pasó la típica idea:
+
+“NO SOY UN ESCRITOR, NADIE LO LEERÁ Y NO ESTOY PREPARADO PARA ESTO”
+
+Aquí solo leo “NO”, “NO”, “NO”, siempre es no, “NO estoy listo para colaborar con mi equipo”, “NO me siento capaz de destacar en la competencia”, “NO me siento listo para buscar trabajo”, cuantas veces al día decimos “NO”, en todas esas ocasiones perdemos oportunidades que pueden cambiar nuestro futuro… ¿Y si en verdad era “no”? Si te atreviste a dar el primer paso y no salió como esperabas esta perfecto, hasta puede que sea mejor para ti porque te da la oportunidad de darte cuenta que te falta, en que puedes mejorar y crecer. No te rindas.
+
+¿Cómo me animé y cómo creo que tú también te puedes animar a cumplir tus metas? ¡Comienza! Alguien no vendrá y te obligará a dar el primer paso, solo tú tienes esa decisión y es lo mas hermoso que podrás experimentar, saber que solo tu puedes cambiar tu futuro y esta en ti guiarte para lograrlo. Si ya comenzaste y te diste cuenta que no es lo tuyo, esta bien puedes dejarlo nunca te diría que continues con algo que no te apasiona lo importante es darse cuenta a tiempo.
+En mi caso aunque ya tenía la idea desde hace un tiempo persiguiendome fue recién por aburrimiento que comencé a escribir esta guia/libro, estaba en la clase de matemática y después de mucho tiempo no me sentaba solo, talvez si hubiera sido lo contrario no me sentía aburrido nunca hubiera comenzado y mucho menos tu podrías leer esto. A veces pequeños eventos pueden cambiar grandes cosas, es por eso que otra vez te pido que no dejes de pasar oportunidades.
+
+¡Es momento de ponerse una meta! Nada llega por sí solo, ¿Todo siempre te sale bien, apruebas los exámenes sin esfuerzo y te crees muy especial? No eres nadie y no llegarás a ningún lugar con ese pensamiento, si por el contrario confias tu ángel guardián y esperas que este te solucione tus problemas, estás en una peor situación que el anterior caso. Nada, ningún certificado, ninguna acreditación, ninguna universidad te puede asegurar que tendrás éxito en la carrera que escogiste, solo depende de ti.
+
+Pondrás la música que más te guste, cierras los ojos, y te responderás estas dos preguntas, ¿Quién quiero ser acá a 5, 10, 15 años? La fecha la escoges tú, ¿Si sigo con este estilo de vida, lo podré conseguir? Adelante haz lo que te dije.
+Piensalo detenidamente el tiempo y las veces que creas necesario, espero profundamente esto te pueda ayudar en tu crecimiento personal. Una vez más te diré: ¡No te rindas!
+
+Un poco de mí, en el momento que escribo esto soy un estudiante de primer año de la carrera profesional Ingenieria de Sistemas de la Universidad Nacional de San Agustín de Arequipa, pero mi historia no comienza aquí, sino un poco más de un año antes de comenzar mis estudios, intentaré no entrar en detalles ya que el cómo comencé daría para varias hojas y no quiero que te aburras, en ese tiempo estaba un poco perdido sobre qué quiero de mi vida, estaba frustrado por ser como soy y no poder cambiar eso que me hace diferente y ni que decir sobre mi familia, se podría decir que estaba esperando lo que viniera “total no puedo hacer nada”. Por casualidad me meti a un pagina que me guio por el trayecto de “no saber nada” hasta “sentirme cómodo con mi conocimiento y no tener miedo a superar los obstáculos que me ponga el destino”. Aprender de blogs y texto plano que nisiquiera esta en tu idioma natal es complicado, no tener a nadie para preguntarle tus dudas e inquietudes es frustrante, ¿Por que no me rendi? Porque tenía un sueño ¡No soy menos que los demás! !¡Demostraré que no importa como soy sino que puedo llegar a ser! Esa meta me dio ánimos de continuar hasta finalizar mi aprendizaje que me proporcionaron y me sigue animando cada día al despertar, porque lo voy a lograr.
+
+Este prólogo ya se hizo extenso por lo que solo me queda pedirte que te quedes con la siguiente reflexión y la repitas antes de irte a dormir.
+
+¿QUE HE HECHO HOY QUE ME HACER MÁS A QUIEN QUIERO SER ACA A 5 AÑOS?
+
 
 ## Índice
 
@@ -15,12 +36,10 @@ muchos compañeros
 ### 6. Flujos de trabajo
 ### 7. Buenas Prácticas
 ### 8. Stash
-### 9. Trucos útiles
-### 10. GitHub CLI
 
 ## Introducción
 ### ¿Qué es este repositorio?
-Creo este repositorio para dar seguridad a mis conocimientos adquiridos al leer el libro, además de dejar escrito lo que aprendí y en especial mi punto de vista como desarrollador que, al igual que mis compañeros, está en constante aprendizaje.
+Creo este repositorio para dar seguridad a mis conocimientos adquiridos, además de dejar escrito lo que aprendí y en especial mi punto de vista como desarrollador que, al igual que mis compañeros, está en constante aprendizaje.
 
 ### ¿Qué es git?
 Git es un software de código abierto, diseñado originalmente por el creador de Linux...<br>
